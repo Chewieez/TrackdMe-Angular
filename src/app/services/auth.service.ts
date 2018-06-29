@@ -1,87 +1,48 @@
-import { AngularFireLiteAuth } from 'angularfire-lite';
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from '@firebase/app';
+
+import { Observable } from 'rxjs/Observable';
+import { FirebaseAuth } from 'angularfire2';
+;
+
 
 @Injectable()
 
 export class AuthService {
-    public name: string;
-    public email: string;
-    public photoUrl: string;
-    public emailVer: boolean;
-    public uid: string;
+    user: Observable<any>;
 
-    constructor(public auth: AngularFireLiteAuth) { }
-    
-    public signin( email: string, password: string ) {
-        this.auth.signin(email, password);
-    }
-    
+    constructor(public firebaseAuth: AngularFireAuth) {
+        this.user = firebaseAuth.authState;
+     }
+
     signup(email: string, password: string) {
-        this.auth.signup(email, password);
-    }
-
-    signout() {
-        this.auth.signout();
-    }
-
-    // returns user id if signed in otherwise null
-    getUid() {
-        return this.auth.uid().subscribe((uid) => uid)
-    }
-
-    // returns true if signed in
-    authState() {
-        return this.auth.isAuthenticated()
-            .subscribe((state) => state)
-    }
-
-    getCurrentUser() {
-        this.auth.currentUser()
-            .subscribe((user) => {
-                if (user != null) {
-                    this.name = user.displayName;
-                    this.email = user.email;
-                    this.photoUrl = user.photoURL;
-                    this.emailVer = user.emailVerified;
-                    this.uid = user.uid;
-                }
+        this.firebaseAuth
+            .auth
+            .createUserWithEmailAndPassword(email, password)
+            .then(value => {
+                console.log('Account created!' , value);
+            })
+            .catch(err => {
+                console.log('Something went wrong creating your account: ', err.message);
             })
     }
 
-    updateProfile( data: { displayName: string | null, photoURL: string | null} ) {
-        this.auth.updateProfile(data);
+    login(email: string, password: string) {
+        this.firebaseAuth
+            .auth
+            .signInWithEmailAndPassword(email, password)
+            .then(value => {
+                console.log('You successfully logged in');
+            })
+            .catch( err => {
+                console.log('Something went wrong loggin in: ', err.message);
+            })
     }
-
-    updateEmail( email: string ) {
-        this.auth.updateEmail(email);
+    
+    logout() {
+        this.firebaseAuth
+            .auth
+            .signOut();
     }
-
-    updatePassword( password: string ) {
-        this.auth.updatePassword(password);
-    }
-
-    verifyPassResetCode( resetCode: string ) {
-        this.auth.verifyPasswordResetCode(resetCode);
-    }
-
-    confirmPasswordReset ( resetCode: string, password: string ) {
-        this.auth.confirmPasswordReset(resetCode, password);
-    }
-
-    relogin( credentials: { providerId: string }) {
-        this.auth.relogin(credentials);
-    }
-
-    delete() {
-        this.auth.deletePermanently();
-    }
-
-    sendEmailVerification() {
-        this.auth.sendEmailVerification();
-    }
-
-    sendPasswordResetEmails(email: string ) {
-        this.auth.sendPasswordResetEmail(email);
-    }
-
 }

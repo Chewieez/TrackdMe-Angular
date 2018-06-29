@@ -14,7 +14,7 @@ export class AppComponent {
   constructor(public auth: AuthService) { }
       
   signin() {
-    this.auth.signin(this.model.userEmail, this.model.userPassword);
+    this.auth.login(this.model.userEmail, this.model.userPassword);
   }
 
   signup() {
