@@ -1,0 +1,58 @@
+<mat-sidenav-container>
+
+    <mat-sidenav #sidenav mode="side">
+
+        <!-- <span mat-svg-src="./images/noun_1035258_cc-gearPencilIcon.svg" class="nav__logoIcon"></span> -->
+
+        <span class="nav__appName">
+            <a href="/dashboard" mat-colors="{color: 'accent'}">TRACKdMe</a>
+        </span>
+        <mat-nav-list>
+            <a mat-list-item href="/dashboard">
+                <mat-icon class="md-primary">dashboard</mat-icon>
+                Dashboard
+            </a>
+
+            <a mat-list-item href="/wishlist">
+                <mat-icon>list</mat-icon>
+                Wishlist
+            </a>
+
+        </mat-nav-list>
+
+        <!-- 
+      <span flex></span>
+      
+      
+      <span ng-if="isAuthenticated()" flex></span>
+      <span flex></span>
+      
+      <span class="nav__profileName">
+          {{ currentUserProfile.firstName || currentUser.email | uppercase}}
+      </span>
+
+      <!-- offset value pushes the dropdown menu down to line up with the bottom of navbar -->
+
+        <button mat-button [matMenuTriggerFor]="menu">Menu
+            <!-- <img ng-src="{{currentUserProfile.image}}" class="nav__profileImage" ng-show="currentUserProfile.image" /> -->
+            <mat-icon class="nav__defaultProfileImage">account_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          
+            <button mat-menu-item ng-href="/#!/profile">
+                <mat-icon>account_circle</mat-icon> Profile
+            </button>
+            <button mat-menu-item ng-click="logout()">
+                <mat-icon>exit_to_app</mat-icon> Logout
+            </button>
+        </mat-menu>
+    </mat-sidenav>
+    <mat-sidenav-content>
+
+        <div class="example-sidenav-content">
+            <mat-icon class="navbar-open" (click)="sidenav.toggle()">menu</mat-icon>
+        </div>
+
+        <app-dashboard></app-dashboard>
+    </mat-sidenav-content>
+</mat-sidenav-container>
