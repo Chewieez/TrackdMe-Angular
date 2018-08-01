@@ -9,17 +9,19 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './services/auth.service';
 
-import { MaterialModule } from './material/material.module';
+import { MaterialModule } from './modules/material/material.module';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
+import { NavComponent } from './components/nav/nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    NavigationComponent
+    NavComponent
   ],
   imports: [
     FormsModule,
@@ -34,7 +36,13 @@ import { NavigationComponent } from './components/navigation/navigation.componen
       { path: 'home', redirectTo: 'dashboarsd' },
       { path: 'dashboard', component: DashboardComponent },     
       { path: '**', redirectTo: 'dashboard' }
-    ])
+    ]),
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

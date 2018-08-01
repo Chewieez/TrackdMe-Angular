@@ -1,2 +1,168 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/*                  */
+/* Site wide styles */
+/*                  */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h4, h5, h6 {
+    margin: .2em;
+    padding: 0;
+    font-weight: 300;
+}
+
+h1, h2, h3 {
+    font-weight: 300;
+}
+
+p {
+    margin: .2em;
+    padding: 0;
+}
+
+.deleteBtn:hover, .deleteBtn:hover > md-icon  {
+    color: red;
+}
+
+.width50 {
+    width: 50%;
+}
+
+.center {
+    margin: 0 auto;
+}
+
+#toast-container {
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+    overflow: visible !important;
+}
+
+footer {
+    font-size: .9em;
+    background-color: tomato;
+    color: white;
+    width: 100%;
+    padding: .3em .6em;
+}
+
+.footer__copyright a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer__copyright a:hover {
+    text-decoration: underline;
+}
+
+.footer-licenses {
+    margin-right: .3em;
+}
+
+.tomato {
+    color: tomato;
+}
+
+.white {
+    color: white;
+}
+
+
+
+ 
+/*                   */
+/* Add Mileage Modal */
+/*                   */
+
+.addMileage__modalContent {
+    padding: 3em;
+}
+
+/*                      */
+/* Photo Upload Styling */
+/*                      */
+
+.addPhoto__imageBtnIcon {
+    margin-right: .2em;
+}
+
+.addPhoto__progressCircle {
+    padding-top: .9em;
+    padding-left: 3em;
+}
+
+
+/*                                   */
+/* Animation code for progress meter */
+/*                                   */
+
+.dashboard__content,
+.importBike__content, 
+.wishlist__content {
+    transition: all linear .6s;
+}
+
+.dashboard__content.ng-hide, 
+.importBike__content.ng-hide, 
+.wishlist__content.ng-hide {
+    opacity: 0;
+}
+
+
+.progressSVG.ng-hide {
+    opacity: .3;
+}
+
+.progressSVG {
+    margin: 0 auto;
+    padding: 0;
+    width: 20%;
+    transition: all linear 0.1s;
+}
+
+#svgspin {
+    text-align: center;
+    animation: spin .8s linear infinite; 
+    display: block; 
+    fill: #223344; 
+    height: 150px; 
+    margin: 0 5px 5px 0; 
+    width: 150px;
+    position: relative;
+    margin: 50px auto;
+  }
+
+  @-moz-keyframes spin {
+    100% {
+      -moz-transform: rotate(360deg);
+    }
+}
+  @-webkit-keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+}
+  @keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg); 
+      transform:rotate(360deg);
+    }
+}
+
+/*               */
+/* Media Queries */
+/*               */
+/* @media screen and (max-width: 700px) {
+    .bikeView__details,
+    .componentView__details,
+    .dashboard__headerImage,
+    .bikeView__dropdown {
+        width: 90%;
+    }
+} */

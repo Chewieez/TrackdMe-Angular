@@ -1,0 +1,74 @@
+/* Navigation Styles */
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+}
+
+.nav__profileName {
+  margin-top: 1.15em;
+  color: dimgray;
+  margin-right: -2.7em;
+  font-size: .9em;
+}
+
+.nav__profileImage {
+  border-radius: 50%;
+  width: 40px;
+  height: auto;
+  margin: 0;
+  margin-top: .3em;
+  margin-right: .7em;
+  padding: 0;
+}
+
+.nav__defaultProfileImage {
+  font-size: 2.7em !important;
+  font-weight: 500;
+  margin: .3em .3em 0 0;
+  padding: 0;
+  padding-bottom: .2em;
+}
+
+.nav__logoIcon {
+  color: gray;
+  width: 50px; 
+  height: auto;
+  margin: 0; 
+  margin-left: .3em;
+  padding-top: 0;
+}
+
+.nav__profile {
+  margin: 0;
+  padding: 0;
+  padding-left: 3.5em;
+}
+
+.nav__appName {
+  font-family: "Allerta Stencil";
+  margin-top: .5em;
+  margin-left: -.2em;
+  font-size: 1.3em;
+  font-weight: 500;
+}
+
+.nav__appName a,
+.nav__appName a:hover,
+.nav__appName a:active,
+.nav__appName a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.tallLetter {
+  font-size: 1.3em;
+}

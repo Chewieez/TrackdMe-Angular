@@ -21,5 +21,9 @@ export class AppComponent {
   signup() {
       this.auth.signup(this.model.userEmail, this.model.userPassword);
   }
+
+  logout() {
+    this.auth.logout();
+  }
         
 }

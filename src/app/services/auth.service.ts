@@ -25,7 +25,7 @@ export class AuthService {
             })
             .catch(err => {
                 console.log('Something went wrong creating your account: ', err.message);
-            })
+            });
     }
 
     login(email: string, password: string) {
@@ -36,13 +36,15 @@ export class AuthService {
                 console.log('You successfully logged in');
             })
             .catch( err => {
-                console.log('Something went wrong loggin in: ', err.message);
-            })
+                console.log('Something went wrong logging in: ', err.message);
+            });
     }
     
     logout() {
         this.firebaseAuth
             .auth
-            .signOut();
+            .signOut()
+            .then( () => console.log("Successfully logged out"))
+            .catch ( err => console.log("Something went wrong logging out"));
     }
 }
