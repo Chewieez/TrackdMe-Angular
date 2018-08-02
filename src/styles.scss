@@ -1,5 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "./app/sass-files/variables";
+/* Bootstrap imports */
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+/* Resets CSS styles */
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/grid"; 
+@import "./app/sass-files/reset";
+
 
 /*                  */
 /* Site wide styles */
@@ -73,31 +83,6 @@ footer {
     color: white;
 }
 
-
-
- 
-/*                   */
-/* Add Mileage Modal */
-/*                   */
-
-.addMileage__modalContent {
-    padding: 3em;
-}
-
-/*                      */
-/* Photo Upload Styling */
-/*                      */
-
-.addPhoto__imageBtnIcon {
-    margin-right: .2em;
-}
-
-.addPhoto__progressCircle {
-    padding-top: .9em;
-    padding-left: 3em;
-}
-
-
 /*                                   */
 /* Animation code for progress meter */
 /*                                   */
@@ -154,6 +139,31 @@ footer {
       transform:rotate(360deg);
     }
 }
+
+ 
+/*                   */
+/* Add Mileage Modal */
+/*                   */
+
+.addMileage__modalContent {
+    padding: 3em;
+}
+
+/*                      */
+/* Photo Upload Styling */
+/*                      */
+
+.addPhoto__imageBtnIcon {
+    margin-right: .2em;
+}
+
+.addPhoto__progressCircle {
+    padding-top: .9em;
+    padding-left: 3em;
+}
+
+
+
 
 /*               */
 /* Media Queries */

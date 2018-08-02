@@ -12,15 +12,15 @@
   position: sticky;
   top: 0;
 }
-
+/* 
 .nav__profileName {
   margin-top: 1.15em;
   color: dimgray;
   margin-right: -2.7em;
   font-size: .9em;
-}
+} */
 
-.nav__profileImage {
+/* .nav__profileImage {
   border-radius: 50%;
   width: 40px;
   height: auto;
@@ -36,7 +36,7 @@
   margin: .3em .3em 0 0;
   padding: 0;
   padding-bottom: .2em;
-}
+} */
 
 .nav__logoIcon {
   color: gray;

@@ -33,27 +33,34 @@
               <md-tooltip md-direction="left">Import Bike from Strava</md-tooltip>
           </md-button>
 
-
       </md-fab-actions>
   </md-fab-speed-dial> -->
+  <div class="container">
 
-  <div class="dashboard__refresh">
-    
-      <button mat-icon-button ng-click="refresh()" class="md-icon-button">
+    <div *ngFor="let bike of bikes"> 
+        <p>{{bike.brandName}}</p>    
+    </div>
+
+    <div class="row justify-content-end">
+      <div class="dashboard__refresh">
+        <button mat-icon-button (click)="refresh()" class="">
           <mat-icon matTooltip="Refresh" aria-label="Button to refresh the dashboard">autorenew</mat-icon>
+        </button>
+      </div>
+    </div>
 
-      </button>
+    <div class="row justify-content-center">
+      <div class="dashboard__header" class="" >
+        <img src="./assets/images/bikeHeader_dreamstime_71468702_web.png" class="dashboard__headerImage" alt="BikeTracker Icon"/>
+      </div> 
+    </div>  
+      
+      <!-- Progress meter -->
+    <div ng-show="progressFlag" ng-hide="!progressFlag" class="progressSVG">
+      <img src="./assets/images/progressGear.svg" alt="Loading Content" id="svgspin" />
+    </div>
+    
   </div>
-
-  <div class="dashboard__header" layout layout-align="center">
-      <img src="./assets/images/bikeHeader_dreamstime_71468702_web.png" class="dashboard__headerImage" alt="BikeTracker Icon"/>
-  </div> 
-
-  <!-- Progress meter -->
-  <div ng-show="progressFlag" ng-hide="!progressFlag" class="progressSVG">
-    <img src="./assets/images/progressGear.svg" alt="Loading Content" id="svgspin" />
-  </div>
-  
   
   <!-- 
   <div ng-show="!progressFlag" layout="column" class="dashboard__content ng-cloak" ng-cloak>
