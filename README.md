@@ -1,6 +1,6 @@
 # TrackdMeAngular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4 then upgraded to CLI version 6.1.1
 
 ## Development server
 
