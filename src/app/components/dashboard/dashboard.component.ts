@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { BikesService } from '../../services/bikes.service';
 import { Bike } from '../../models/bike.model';
-import { first } from '../../../../node_modules/rxjs/operators';
+import { first, tap } from '../../../../node_modules/rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,18 +13,17 @@ import { first } from '../../../../node_modules/rxjs/operators';
 export class DashboardComponent implements OnInit {
   model: any = {};
   bikes: any;
-  currentUser: any = null;
+  currentUser: any;
 
   constructor(public auth: AuthService, private bikesService: BikesService) {
   }
   
   getCurrentUser() {
-    return this.auth.getAuthState().pipe(first()).toPromise();
+    return this.auth.getAuthState().pipe(first());
   }
 
-  async getUserBikes() {
-    this.currentUser = await this.getCurrentUser();
-
+  getUserBikes() {
+    
     if (this.currentUser) {
       this.bikesService.getUserBikes(this.currentUser.uid).subscribe(data => {
         this.bikes = data;
@@ -33,12 +32,21 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-    this.getUserBikes();
-    // if (this.currentUser) {
-      
-    // }
 
+    this.getCurrentUser().pipe(
+      tap(user => {
+        if (user) {
+          this.currentUser = user;
+          
+          this.getUserBikes();
+        } else {
+          this.currentUser = null;
+        }
+      })
+    )
+    .subscribe();
+
+    
     /**
      * Test code to get POST api call working
      */
