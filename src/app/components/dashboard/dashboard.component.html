@@ -1,4 +1,6 @@
-<div ng-if="<!-- check if signed in -->">
+<h1 *ngIf="currentUser">Welcome {{ (currentUser)?.email }}!</h1>
+<h3 *ngIf="currentUser">{{ currentUser.uid }} </h3>
+<div *ngIf="!currentUser">
   <label>Email</label>
   <input type="email" [(ngModel)]="model.userEmail">
   <label>Password</label>
@@ -56,10 +58,10 @@
     </div>  
       
       <!-- Progress meter -->
-    <div ng-show="progressFlag" ng-hide="!progressFlag" class="progressSVG">
+    <!-- <div ng-show="progressFlag" ng-hide="!progressFlag" class="progressSVG">
       <img src="./assets/images/progressGear.svg" alt="Loading Content" id="svgspin" />
     </div>
-    
+     -->
   </div>
   
   <!-- 

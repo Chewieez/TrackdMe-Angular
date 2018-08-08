@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Bike } from '../models/bike.model';
 import { AuthService } from './auth.service';
-import { Observable, BehaviorSubject } from '../../../node_modules/rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { Observable, BehaviorSubject, throwError } from '../../../node_modules/rxjs';
+import { map, shareReplay, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 const API_URL = "https://bike-component-log.firebaseio.com/bikes";
 const CACHE_SIZE = 1; // the number of elements that are cached and replayed for each subscriber
-const tempUID = "vNNMaqgXGFXgbEnb8T6wftVozHt2";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BikesService {
   editBikeMode: boolean;
-  userId: string;
+  currentUser: any = null;
   bikesCache$: Observable<Object>;
   currentBike: Bike; 
   
@@ -22,9 +21,10 @@ export class BikesService {
   constructor( public auth: AuthService, private http: HttpClient ) {
     
     this.editBikeMode = false;
+    //this.auth.getAuthState().subscribe(user => this.currentUser = user);
   }
   
-  getUserBikes(fbUID: string) {
+  getUserBikes(fbUID) {
     if (!this.bikesCache$) {
       this.bikesCache$ = this.requestUserBikes(fbUID)
         .pipe(
@@ -35,13 +35,17 @@ export class BikesService {
     }
   }
   
-  private requestUserBikes(fbUID: string ) {
-    return this.http.get<Bike[]>(`${API_URL}/.json?orderBy="userId"&equalTo="${fbUID}"`)
+  private requestUserBikes(fbUID) {
+    return this.http.get<Bike[]>(`${API_URL}.json?orderBy="userId"&equalTo="${fbUID}"`)
     .pipe(
       map(res => { 
         const bikes = res.valueOf();
         return Object.keys(bikes)
         .map(key => bikes[key]);
       }));
+  }
+
+  addBike(bikeToAdd: Bike): Observable<any> {
+    return this.http.post<Bike>(`${API_URL}.json`, bikeToAdd);
   }
 }

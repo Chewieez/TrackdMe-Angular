@@ -3,18 +3,23 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from '@firebase/app';
 
 import { Observable } from 'rxjs';
-import { FirebaseAuth } from 'angularfire2';
-;
+
 
 
 @Injectable()
-
 export class AuthService {
-    user: Observable<any>;
+    
+    public authState: Observable<any>;
+    currentUser: any = null;
+    
 
     constructor(public firebaseAuth: AngularFireAuth) {
-        this.user = firebaseAuth.authState;
+        this.authState = firebaseAuth.authState;
      }
+
+    getAuthState() {
+        return this.authState;
+    }
 
     signup(email: string, password: string) {
         this.firebaseAuth
@@ -47,4 +52,6 @@ export class AuthService {
             .then( () => console.log("Successfully logged out"))
             .catch ( err => console.log("Something went wrong logging out"));
     }
+
+   
 }
