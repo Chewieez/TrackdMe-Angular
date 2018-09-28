@@ -2,9 +2,9 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "./app/sass-files/variables";
 /* Bootstrap imports */
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+@import "~bootstrap/scss/_mixins";
 /* Resets CSS styles */
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/grid"; 

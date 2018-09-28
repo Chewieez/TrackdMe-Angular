@@ -13,15 +13,15 @@ const CACHE_SIZE = 1; // the number of elements that are cached and replayed for
 })
 export class BikesService {
   editBikeMode: boolean;
-  currentUser: any = null;
+  user: any;
   bikesCache$: Observable<Object>;
   currentBike: Bike; 
   
   
-  constructor( public auth: AuthService, private http: HttpClient ) {
+  constructor( private _auth: AuthService, private _http: HttpClient ) {
     
     this.editBikeMode = false;
-    //this.auth.getAuthState().subscribe(user => this.currentUser = user);
+    // this._auth.getAuthState().subscribe(user => this.currentUser = user);
   }
   
   getUserBikes(fbUID) {
@@ -36,7 +36,7 @@ export class BikesService {
   }
   
   private requestUserBikes(fbUID) {
-    return this.http.get<Bike[]>(`${API_URL}.json?orderBy="userId"&equalTo="${fbUID}"`)
+    return this._http.get<Bike[]>(`${API_URL}.json?orderBy="userId"&equalTo="${fbUID}"`)
     .pipe(
       map(res => { 
         const bikes = res.valueOf();
@@ -46,6 +46,6 @@ export class BikesService {
   }
 
   addBike(bikeToAdd: Bike): Observable<any> {
-    return this.http.post<Bike>(`${API_URL}.json`, bikeToAdd);
+    return this._http.post<Bike>(`${API_URL}.json`, bikeToAdd);
   }
 }

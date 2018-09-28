@@ -1,6 +1,6 @@
-<h1 *ngIf="currentUser">Welcome {{ (currentUser)?.email }}!</h1>
-<h3 *ngIf="currentUser">{{ currentUser.uid }} </h3>
-<div *ngIf="!currentUser">
+<p *ngIf="user">Welcome {{ user.email }}!</p>
+<p *ngIf="user">{{ user.uid }} </p>
+<div *ngIf="!user">
   <label>Email</label>
   <input type="email" [(ngModel)]="model.userEmail">
   <label>Password</label>
@@ -9,7 +9,7 @@
   <input type="button" (click)="signup()" value="Sign Up">
 </div>
 
-<div class="dashboard">
+<div class="dashboard container">
 
   <!-- ACTION BUTTON - fab button to add bike, import bike, add component -->
   <!-- <md-fab-speed-dial md-direction="up" class="md-scale md-fab-bottom-right" >
@@ -37,13 +37,7 @@
 
       </md-fab-actions>
   </md-fab-speed-dial> -->
-  <div class="container">
-
-    <div *ngFor="let bike of bikes"> 
-        <p>{{bike.brandName}}</p>    
-    </div>
-
-    <div class="row justify-content-end">
+    <div class="d-flex flex-row justify-content-end">
       <div class="dashboard__refresh">
         <button mat-icon-button (click)="refresh()" class="">
           <mat-icon matTooltip="Refresh" aria-label="Button to refresh the dashboard">autorenew</mat-icon>
@@ -51,56 +45,57 @@
       </div>
     </div>
 
-    <div class="row justify-content-center">
-      <div class="dashboard__header" class="" >
-        <img src="./assets/images/bikeHeader_dreamstime_71468702_web.png" class="dashboard__headerImage" alt="BikeTracker Icon"/>
-      </div> 
-    </div>  
-      
-      <!-- Progress meter -->
+    <div class="d-flex flex-row justify-content-center">
+      <div class="dashboard__header" class="">
+        <img src="./assets/images/bikeHeader_dreamstime_71468702_web.png" class="dashboard__headerImage" alt="BikeTracker Icon" />
+      </div>
+    </div>
+
+    <!-- Progress meter -->
     <!-- <div ng-show="progressFlag" ng-hide="!progressFlag" class="progressSVG">
       <img src="./assets/images/progressGear.svg" alt="Loading Content" id="svgspin" />
     </div>
      -->
-  </div>
   
-  <!-- 
-  <div ng-show="!progressFlag" layout="column" class="dashboard__content ng-cloak" ng-cloak>
-      
-      <div layout="column" layout-align="center center"  class="bikeView">
-         <div ng-show="bikes.length !== 0" class="bikeView__dropdown ng-cloak" ng-cloak>
-              <md-input-container class="bikeView__dropdown-ic">
-                  <label for="currentBikeSelector">Choose a Bike</label>
-                  <md-select ng-model="currentBike" ng-change="getComponents()" id="currentBikeSelector">
-                      <md-optgroup label="Bikes">
-                          <md-option ng-value="bike" ng-repeat="bike in bikes"> {{ bike.brandName }} {{ bike.modelName }}</md-option>
-                      </md-optgroup>
-                      <md-option ng-click="sendToAddBike()">
-                          <span md-colors="{color: 'primary'}"> Add A New Bike... </span>
-                      </md-option>
-                  </md-select>
-              </md-input-container>
-          </div>
 
-          <div ng-if="!currentUserProfile" class="ng-cloak" layout="column" layout-align="center center" ng-cloak>
+
+  <div class="row dashboard__content">
+
+    <div class="bikeView">
+      <div ng-show="bikes.length !== 0" class="bikeView__dropdown">
+        <mat-form-field class="bikeView__dropdown-ic">
+          <!-- <label for="currentBikeSelector">Choose a Bike</label> -->
+          <mat-select [(value)]="currentBike" (onNgModelChange)="getComponents()" id="currentBikeSelector" placeholder="Choose a Bike" aria-placeholder="Choose a Bike">
+            <mat-optgroup label="Bikes">
+              <mat-option [value]="bike" *ngFor="let bike of bikes"> {{ bike.brandName }} {{ bike.modelName }}</mat-option>
+            </mat-optgroup>
+            <mat-option (click)="sendToAddBike()">
+              <span> Add A New Bike... </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- <div ng-if="!currentUserProfile" class="" layout="column">
               <h2>Create a user profile first, then add a bike.</h2>
               <md-button ng-href="/#!/profile" class="md-raised md-primary">Create Profile</md-button>
           </div>
-
-
-          <div ng-show="bikes.length === 0 && currentUserProfile" class="bikeView__addBikeButtons ng-cloak" layout="column" layout-align="center center" ng-cloak>
-              <h2 ng-if="!currentUserProfile.stravaId">Add a bike to start tracking your components. </h2>
-              <md-button class="md-raised md-primary" ng-click="sendToAddBike()">Add A Bike</md-button>
-              <h2 ng-if="!currentUserProfile.stravaId">Or link your Strava account on your Profile Page to import your saved bikes.</h2>
-              <h2 ng-if="currentUserProfile.stravaId">Choose an option to start tracking a bike and it's components.</h2>
-              <md-button ng-if="!currentUserProfile.stravaId" class="md-raised" ng-href="/#!/profile">Profile</md-button>
-              <md-button ng-if="currentUserProfile.stravaId" class="md-raised md-warn" ng-click="importBikes()">Import Bike from Strava</md-button>
+          
+          <div ng-show="bikes.length === 0 && currentUserProfile" class="bikeView__addBikeButtons " layout="column">
+            <h2 ng-if="!currentUserProfile.stravaId">Add a bike to start tracking your components. </h2>
+            <md-button class="md-raised md-primary" ng-click="sendToAddBike()">Add A Bike</md-button>
+            <h2 ng-if="!currentUserProfile.stravaId">Or link your Strava account on your Profile Page to import your saved bikes.</h2>
+            <h2 ng-if="currentUserProfile.stravaId">Choose an option to start tracking a bike and it's components.</h2>
+            <md-button ng-if="!currentUserProfile.stravaId" class="md-raised" ng-href="/#!/profile">Profile</md-button>
+            <md-button ng-if="currentUserProfile.stravaId" class="md-raised md-warn" ng-click="importBikes()">Import Bike from Strava</md-button>
           </div>
-      
-
-
+          
+          
+        -->
+        <!--
+          
           <div flex="100" layout-align="center center" ng-show="currentBike" ng-model="currentBike" class="bikeView__details" id="currentBikeDetails">
-              <div>
+            <div>
                   <h2 layout>
                       <md-icon md-svg-src="/images/noun_1067030_cc.svg" style="width: 50px; height: auto" class="bikeView__icon"></md-icon>
                       <span class="bikeView__bikeHeader"> {{ currentBike.brandName }} {{ currentBike.modelName}}</span>
@@ -177,16 +172,18 @@
                               </div> 
                       </v-pane-content>
                   </v-pane>
-              </v-accordion>
-          </div>
-      </div> -->
-  <!-- End of Bike View Section -->
+              </v-accordion> -->
 
-  <!-- Horizontal Line Divider between Bike info and Component info -->
-  <!-- <mat-divider ng-if="currentBike"></mat-divider> -->
+    </div>
+  </div>
+</div>
+<!-- End of Bike View Section -->
 
-  <!-- Component Section -->
-  <!-- <div ng-if="components" class="componentView" layout="column" layout-align="center center">
+<!-- Horizontal Line Divider between Bike info and Component info -->
+<!-- <mat-divider ng-if="currentBike"></mat-divider> -->
+
+<!-- Component Section -->
+<!-- <div ng-if="components" class="componentView" layout="column" layout-align="center center">
 
           <div layout="row" layout-align="space-between" class="componentView__componentSearchSort">
 
@@ -216,8 +213,8 @@
               </span>
           </div> -->
 
-  <!-- Component Details -->
-  <!-- <div layout="column" class="componentView__details">
+<!-- Component Details -->
+<!-- <div layout="column" class="componentView__details">
   
               <div ng-if="!components">
                   <h4>Click the button to start tracking your first component</h4>
@@ -324,4 +321,3 @@
 </div>
 
  -->
-</div>

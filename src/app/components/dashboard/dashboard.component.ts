@@ -12,41 +12,17 @@ import { first, tap } from '../../../../node_modules/rxjs/operators';
 
 export class DashboardComponent implements OnInit {
   model: any = {};
-  bikes: any;
-  currentUser: any;
+  public bikes: any;
+  public user: any;
 
-  constructor(public auth: AuthService, private bikesService: BikesService) {
+  constructor(private _auth: AuthService, private _bikesService: BikesService) {
+    this._auth.user$.subscribe(user => {
+      this.user = user;
+      this.getUserBikes();
+    });
   }
   
-  getCurrentUser() {
-    return this.auth.getAuthState().pipe(first());
-  }
-
-  getUserBikes() {
-    
-    if (this.currentUser) {
-      this.bikesService.getUserBikes(this.currentUser.uid).subscribe(data => {
-        this.bikes = data;
-      });
-    }
-  }
-
   ngOnInit() {
-
-    this.getCurrentUser().pipe(
-      tap(user => {
-        if (user) {
-          this.currentUser = user;
-          
-          this.getUserBikes();
-        } else {
-          this.currentUser = null;
-        }
-      })
-    )
-    .subscribe();
-
-    
     /**
      * Test code to get POST api call working
      */
@@ -60,11 +36,31 @@ export class DashboardComponent implements OnInit {
     // });
   }
 
-  signin() {
-    this.auth.login(this.model.userEmail, this.model.userPassword);
+  public getCurrentUser() {
+    
+    return this._auth.getAuthState().pipe(first());
+
   }
 
-  signup() {
-      this.auth.signup(this.model.userEmail, this.model.userPassword);
+  public getUserBikes() {
+    
+    if (this.user) {
+      this._bikesService.getUserBikes(this.user.uid).subscribe(data => {
+        this.bikes = data;
+      });
+    }
+  }
+
+  public sendToAddBike() {
+    console.log("this should send user to add a bike, or open a add-bike modal");
+  }
+
+
+  public signin() {
+    this._auth.login(this.model.userEmail, this.model.userPassword);
+  }
+
+  public signup() {
+      this._auth.signup(this.model.userEmail, this.model.userPassword);
   }
 }
