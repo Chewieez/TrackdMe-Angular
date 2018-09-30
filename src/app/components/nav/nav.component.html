@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)" (opened)="isNavOpen = true" (closed)="isNavOpen = false">
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item href="/dashboard">
@@ -30,15 +30,15 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+      <button *ngIf="!isNavOpen" class="navToggleBtn" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span class="nav__appName">
-          <a href="/dashboard" mat-colors="{color: 'accent'}">TRACKdMe</a>
-      </span>
+      <button *ngIf="isNavOpen" class="navToggleBtn" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">arrow_back</mat-icon>
+      </button>
+      <h5 class="nav__appName">Trackd.Me</h5>
     </mat-toolbar>
 
-    <!-- Add Content Here -->
     <app-dashboard></app-dashboard>
 
   </mat-sidenav-content>

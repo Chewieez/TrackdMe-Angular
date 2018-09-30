@@ -1,5 +1,9 @@
 /* Navigation Styles */
 
+.navToggleBtn {
+  margin-left: -10px;
+}
+
 .sidenav-container {
   height: 100%;
 }
@@ -55,10 +59,9 @@
 
 .nav__appName {
   font-family: "Allerta Stencil";
-  margin-top: .5em;
-  margin-left: -.2em;
+  margin-left: .5rem;
   font-size: 1.3em;
-  font-weight: 500;
+  /* font-weight: 500; */
 }
 
 .nav__appName a,
