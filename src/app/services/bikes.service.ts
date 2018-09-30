@@ -14,9 +14,8 @@ const CACHE_SIZE = 1; // the number of elements that are cached and replayed for
 export class BikesService {
   editBikeMode: boolean;
   user: any;
-  bikesCache$: Observable<Object>;
+  bikesCache$: Observable<Array<Bike>>;
   currentBike: Bike; 
-  
   
   constructor( private _auth: AuthService, private _http: HttpClient ) {
     
@@ -24,7 +23,7 @@ export class BikesService {
     // this._auth.getAuthState().subscribe(user => this.currentUser = user);
   }
   
-  getUserBikes(fbUID) {
+  getUserBikes(fbUID): Observable<Array<Bike>> {
     if (!this.bikesCache$) {
       this.bikesCache$ = this.requestUserBikes(fbUID)
         .pipe(

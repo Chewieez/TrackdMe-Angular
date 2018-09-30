@@ -58,13 +58,17 @@
 .bikeImages__bikeImage-c {
     margin: .2em;
 }
+*/
 
 .bikeImages__bikeImage,
 .bikeImages__bikeImageWhiteBox
- {
-    border-radius: 4px;
+{
+  width: 150px;
+  height: auto;
+  border-radius: 4px;
 }
 
+/*
 .imageLightbox__image {
     width: 100%;
     max-width: 900px;

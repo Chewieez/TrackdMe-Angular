@@ -64,8 +64,7 @@
     <div class="bikeView">
       <div ng-show="bikes.length !== 0" class="bikeView__dropdown">
         <mat-form-field class="bikeView__dropdown-ic">
-          <!-- <label for="currentBikeSelector">Choose a Bike</label> -->
-          <mat-select [(value)]="currentBike" (onNgModelChange)="getComponents()" id="currentBikeSelector" placeholder="Choose a Bike" aria-placeholder="Choose a Bike">
+          <mat-select [(ngModel)]="currentBike" (ngModelChange)="getComponents()" id="currentBikeSelector" placeholder="Choose a Bike" aria-placeholder="Choose a Bike">
             <mat-optgroup label="Bikes">
               <mat-option [value]="bike" *ngFor="let bike of bikes"> {{ bike.brandName }} {{ bike.modelName }}</mat-option>
             </mat-optgroup>
@@ -76,105 +75,88 @@
         </mat-form-field>
       </div>
 
-      <!-- <div ng-if="!currentUserProfile" class="" layout="column">
-              <h2>Create a user profile first, then add a bike.</h2>
-              <md-button ng-href="/#!/profile" class="md-raised md-primary">Create Profile</md-button>
-          </div>
-          
-          <div ng-show="bikes.length === 0 && currentUserProfile" class="bikeView__addBikeButtons " layout="column">
-            <h2 ng-if="!currentUserProfile.stravaId">Add a bike to start tracking your components. </h2>
-            <md-button class="md-raised md-primary" ng-click="sendToAddBike()">Add A Bike</md-button>
-            <h2 ng-if="!currentUserProfile.stravaId">Or link your Strava account on your Profile Page to import your saved bikes.</h2>
-            <h2 ng-if="currentUserProfile.stravaId">Choose an option to start tracking a bike and it's components.</h2>
-            <md-button ng-if="!currentUserProfile.stravaId" class="md-raised" ng-href="/#!/profile">Profile</md-button>
-            <md-button ng-if="currentUserProfile.stravaId" class="md-raised md-warn" ng-click="importBikes()">Import Bike from Strava</md-button>
-          </div>
-          
-          
-        -->
-        <!--
-          
-          <div flex="100" layout-align="center center" ng-show="currentBike" ng-model="currentBike" class="bikeView__details" id="currentBikeDetails">
-            <div>
-                  <h2 layout>
-                      <md-icon md-svg-src="/images/noun_1067030_cc.svg" style="width: 50px; height: auto" class="bikeView__icon"></md-icon>
-                      <span class="bikeView__bikeHeader"> {{ currentBike.brandName }} {{ currentBike.modelName}}</span>
-                      <span flex></span>
-                      <md-menu>
-                          <md-button aria-label="Bike menu" class="md-icon-button dotCtrlMenu" ng-click="$mdOpenMenu($event)">
-                              <md-icon md-font-icon="material-icons">more_vert</md-icon>
-                          </md-button>
-                          <md-menu-content width="2">
-                              <md-menu-item>
-                                  <md-button class="" ng-click="sendToEditBike(currentBike)" aria-label="Edit Bike">
-                                      <md-icon md-font-icon="material-icons" class="">mode_edit</md-icon>Edit
-                                  </md-button>
-                              </md-menu-item>
-                              <md-menu-item>
-                                  <md-button class="" ng-click="showConfirmBike($event, currentBike)" aria-label="Delete Bike">
-                                      <md-icon md-font-icon="material-icons" class="">delete</md-icon>Delete
-                                  </md-button>
-                              </md-menu-item>
-                          </md-menu-content>
-                      </md-menu>
-                  </h2>
-              </div>
-              <div layout>
-                  <span class="bikeView__mileage" layout>Mileage: {{currentBike.mileage}} miles</span>
-                  <span flex></span>
-                  <span ng-if="!currentBike.stravaBikeId" class="addMileageBtn">
-                      <md-button class="md-raised md-accent addMileageBtn" ng-click="addMileageModal()">Add Mileage</md-button>
-                  </span>
-                  <span>
-                      <md-icon ng-if="currentBike.stravaBikeId" md-svg-src="./images/api_logo_pwrdBy_strava_horiz_light.svg" class="poweredByStravaIcon"></md-icon>
-                      <md-tooltip md-direction="top" md-delay="600">Mileage synced with Strava</md-tooltip>
-                  </span>
-              </div>
-              <br>
-              <br>
-              <v-accordion class="vAccordion--default bikeView__extraDetails">
-                  <v-pane>
-                      <v-pane-header aria-controls="{{ currentBike.fbId }}-content">
-                          More Details...
-                      </v-pane-header>
-
-                      <v-pane-content aria-labelledby="{{ currentBike.fbId }}-header">
-                          <span ng-if="currentBike.serial">
-                              <h5>Serial Number:</h5>
-                              <p>{{currentBike.serial}}</p>
-                          </span>
-                          <span ng-if="currentBike.purchaseDate">
-                              <h5>Purchased:</h5>
-                              <p> {{currentBike.purchaseDate | date}}</p>
-                          </span>
-                          <span ng-if="currentBike.notes">
-                              <h5>Notes:</h5>
-                              <p> {{currentBike.notes}}</p>
-                          </span>
-                      </v-pane-content>
-                  </v-pane>
-              </v-accordion>
-
-
-              <v-accordion class="vAccordion--default bikeView__bikeImages" ng-cloak>
-                  <v-pane>
-                      <v-pane-header aria-controls="{{ currentBike.fbId }}-content">
-                          Images
-                      </v-pane-header>
-
-                      <v-pane-content aria-labelledby="{{ currentBike.fbId }}-header">
-
-                              <div layout="row" layout-padding layout-wrap layout-fill layout-align="space-around center" ng-cloak>
-                                  
-                                  <div ng-repeat="image in currentBike.images" class="bikeImages__bikeImageWhiteBox" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="40" layout layout-align="center center">
-                                      <img ng-src="{{ image }}" class="bikeImages__bikeImage" ng-click="displayPhoto($event)"/>
-                                  </div>
-                              </div> 
-                      </v-pane-content>
-                  </v-pane>
-              </v-accordion> -->
-
+  <!-- <div ng-if="!currentUserProfile">
+        <h2>Create a user profile first, then add a bike.</h2>
+        <md-button ng-href="/#!/profile" class="md-raised md-primary">Create Profile</md-button>
+      </div>
+    
+    <div ng-show="bikes.length === 0 && currentUserProfile" class="bikeView__addBikeButtons " layout="column">
+      <h2 ng-if="!currentUserProfile.stravaId">Add a bike to start tracking your components. </h2>
+      <md-button class="md-raised md-primary" ng-click="sendToAddBike()">Add A Bike</md-button>
+      <h2 ng-if="!currentUserProfile.stravaId">Or link your Strava account on your Profile Page to import your saved bikes.</h2>
+      <h2 ng-if="currentUserProfile.stravaId">Choose an option to start tracking a bike and it's components.</h2>
+      <md-button ng-if="!currentUserProfile.stravaId" class="md-raised" ng-href="/#!/profile">Profile</md-button>
+      <md-button ng-if="currentUserProfile.stravaId" class="md-raised md-warn" ng-click="importBikes()">Import Bike from Strava</md-button>
     </div>
+  -->
+      <mat-card *ngIf="currentBike" class="bikeView__details" id="currentBikeDetails">
+        <mat-card-title>
+          <h2>
+            <!-- <mdi-icon mdi-svg-src="/images/noun_1067030_cc.svg" style="width: 50px; height: auto" class="bikeView__icon"></mdi-icon> -->
+            <span class="bikeView__bikeHeader"> {{ currentBike.brandName }} {{ currentBike.modelName}}</span>
+            <mat-menu #appMenu="matMenu">
+              <button mat-menu-item (click)="sendToEditBike(currentBike)" aria-label="Edit Bike">
+                <mat-icon>mode_edit</mat-icon>Edit
+              </button>
+              <button mat-menu-item (click)="showConfirmBike($event, currentBike)" aria-label="Delete Bike">
+                <mat-icon>delete</mat-icon>Delete
+              </button>
+            </mat-menu>
+            <button mat-icon-button aria-label="Bike menu" class="md-icon-button dotCtrlMenu" [matMenuTriggerFor]="appMenu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+          </h2>
+        </mat-card-title>
+        <mat-card-content>
+          <div>
+            <span class="bikeView__mileage">Mileage: {{currentBike.mileage}} miles</span>
+            <span *ngIf="!(currentBike)?.stravaBikeId" class="addMileageBtn">
+              <button mat-button class="mat-raised mat-accent addMileageBtn" (click)="addMileageModal()">Add Mileage</button>
+            </span>
+            <span>
+              <!-- <mat-icon *ngIf="currentBike.stravaBikeId" mat-svg-src="./images/api_logo_pwrdBy_strava_horiz_light.svg" class="poweredByStravaIcon"></mat-icon> -->
+              <!-- <mat-tooltip md-direction="top" md-delay="600">Mileage synced with Strava</mat-tooltip> -->
+            </span>
+          </div>
+          <br>
+          <br>
+          <mat-accordion class="vAccordion--default bikeView__extraDetails">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  More Details...
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              
+              <div>
+                <span *ngIf="currentBike.serial">
+                  <h5>Serial Number:</h5>
+                  <p>{{currentBike.serial}}</p>
+                </span>
+                <span *ngIf="currentBike.purchaseDate">
+                  <h5>Purchased:</h5>
+                  <p> {{currentBike.purchaseDate | date}}</p>
+                </span>
+                <span *ngIf="currentBike.notes">
+                  <h5>Notes:</h5>
+                  <p> {{currentBike.notes}}</p>
+                </span>
+              </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                Images
+              </mat-expansion-panel-header>
+              <div class="row justify-space-around">
+                <div *ngFor="let image of currentBike.images" class="bikeImages__bikeImageWhiteBox">
+                  <img [src]="image" class="bikeImages__bikeImage" (click)="displayPhoto($event)"/>
+                </div>
+              </div> 
+            </mat-expansion-panel>
+          </mat-accordion>
+          <!--
+          </mat-card-content>
+    </mat-card>
   </div>
 </div>
 <!-- End of Bike View Section -->

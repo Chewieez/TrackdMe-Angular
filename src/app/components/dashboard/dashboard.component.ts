@@ -12,8 +12,9 @@ import { first, tap } from '../../../../node_modules/rxjs/operators';
 
 export class DashboardComponent implements OnInit {
   model: any = {};
-  public bikes: any;
   public user: any;
+  public bikes: Bike[];
+  public currentBike: Bike;
 
   constructor(private _auth: AuthService, private _bikesService: BikesService) {
     this._auth.user$.subscribe(user => {
@@ -37,13 +38,10 @@ export class DashboardComponent implements OnInit {
   }
 
   public getCurrentUser() {
-    
     return this._auth.getAuthState().pipe(first());
-
   }
 
-  public getUserBikes() {
-    
+  public getUserBikes(): void {
     if (this.user) {
       this._bikesService.getUserBikes(this.user.uid).subscribe(data => {
         this.bikes = data;
@@ -51,16 +49,20 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  public sendToAddBike() {
+  public getComponents(): void {
+    console.log("Will eventually get the chosen bikes components now.");
+  }
+
+  public sendToAddBike(): void {
     console.log("this should send user to add a bike, or open a add-bike modal");
   }
 
 
-  public signin() {
+  public signin(): void {
     this._auth.login(this.model.userEmail, this.model.userPassword);
   }
 
-  public signup() {
+  public signup(): void {
       this._auth.signup(this.model.userEmail, this.model.userPassword);
   }
 }
