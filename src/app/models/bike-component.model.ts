@@ -1,6 +1,6 @@
 import { ComponentType } from "./component-type.model";
 
-export class Component {
+export class BikeComponent {
     active: boolean;
     bikeFbId: string;
     brandName: string;

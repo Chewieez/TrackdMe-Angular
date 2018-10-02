@@ -3,6 +3,8 @@ import { AuthService } from '../../services/auth.service';
 import { BikesService } from '../../services/bikes.service';
 import { Bike } from '../../models/bike.model';
 import { first, tap } from '../../../../node_modules/rxjs/operators';
+import { ComponentService } from '../../services/component.service';
+import { BikeComponent } from '../../models/bike-component.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,8 +17,13 @@ export class DashboardComponent implements OnInit {
   public user: any;
   public bikes: Bike[];
   public currentBike: Bike;
+  public components: BikeComponent[];
+  public componentSearch: string;
+  public sort: any;
+  public isSortReverse = false;
+  public showActiveComponents = true;
 
-  constructor(private _auth: AuthService, private _bikesService: BikesService) {
+  constructor(private _auth: AuthService, private _bikesService: BikesService, private _componentService: ComponentService) {
     this._auth.user$.subscribe(user => {
       this.user = user;
       this.getUserBikes();
@@ -50,7 +57,12 @@ export class DashboardComponent implements OnInit {
   }
 
   public getComponents(): void {
-    console.log("Will eventually get the chosen bikes components now.");
+    if (this.user) {
+      this._componentService.getBikeComponents(this.user.uid).subscribe(data => {
+        this.components = data;
+        console.log("retrieved components.");
+      });
+    }
   }
 
   public sendToAddBike(): void {

@@ -12,10 +12,10 @@ const CACHE_SIZE = 1; // the number of elements that are cached and replayed for
   providedIn: 'root'
 })
 export class BikesService {
-  editBikeMode: boolean;
-  user: any;
-  bikesCache$: Observable<Array<Bike>>;
-  currentBike: Bike; 
+  public editBikeMode: boolean;
+  public user: any;
+  public bikesCache$: Observable<Array<Bike>>;
+  public currentBike: Bike; 
   
   constructor( private _auth: AuthService, private _http: HttpClient ) {
     
@@ -25,7 +25,7 @@ export class BikesService {
   
   getUserBikes(fbUID): Observable<Array<Bike>> {
     if (!this.bikesCache$) {
-      this.bikesCache$ = this.requestUserBikes(fbUID)
+      this.bikesCache$ = this._requestUserBikes(fbUID)
         .pipe(
           shareReplay(CACHE_SIZE) 
         );
@@ -34,7 +34,7 @@ export class BikesService {
     }
   }
   
-  private requestUserBikes(fbUID) {
+  private _requestUserBikes(fbUID) {
     return this._http.get<Bike[]>(`${API_URL}.json?orderBy="userId"&equalTo="${fbUID}"`)
     .pipe(
       map(res => { 

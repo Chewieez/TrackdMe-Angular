@@ -2,6 +2,12 @@
 /* Dashboard Styles */
 /*                  */
 
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+  padding: 0;
+  box-shadow: none;
+  border-bottom: 1px solid  grey
+}
+
 .dashboard__header {
     /* margin-top: -35px; */
 }

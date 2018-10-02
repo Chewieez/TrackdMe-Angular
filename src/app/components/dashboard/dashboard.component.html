@@ -154,47 +154,45 @@
               </div> 
             </mat-expansion-panel>
           </mat-accordion>
-          <!--
-          </mat-card-content>
-    </mat-card>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
-</div>
-<!-- End of Bike View Section -->
-
-<!-- Horizontal Line Divider between Bike info and Component info -->
-<!-- <mat-divider ng-if="currentBike"></mat-divider> -->
+  <!-- End of Bike View Section -->
+  
+  <mat-divider *ngIf="currentBike"></mat-divider>
+  <!--
 
 <!-- Component Section -->
-<!-- <div ng-if="components" class="componentView" layout="column" layout-align="center center">
-
-          <div layout="row" layout-align="space-between" class="componentView__componentSearchSort">
-
-              <div flex="40" class="componentSearchSort__componentSearch">
-                  <md-input-container class="componentSearch__input">
-                      <input type="search" ng-model="componentSearch" id="searchComponentInput" aria-label="Search Bike Components" size="400"/>
-                      <label for="searchComponentInput">Search Components</label>
-                  </md-input-container>
-              </div>
-
-              <span flex-offset="15" flex="36" class="componentSearchSort__componentSortBy">
-                  <md-input-container class="componentSearchSort__sortDropDown">
-                      <label>Sort Components</label>
-                      <md-select ng-model="sortSelector" ng-model-options="{trackBy: '$sort.title'}" ng-change="setSortOrder(sortSelector)" aria-label="Sort Components By">
-                        
-                          <md-option ng-value="sort" ng-repeat="sort in sortOrderArray">{{ sort.title }}</md-option>
-                      </md-select>
-                  </md-input-container>
-              </span>
-
-              <span flex="12">
-                  <md-switch ng-model="sortReverse.setting" id="sortReverseBox" aria-label="Reverse Results" class="componentSearchSort__reverseSwitch">Reverse</md-switch>
-              </span>
-
-              <span flex="12">
-                  <md-switch ng-model="activeFlag.show" aria-label="Active Components Only" class="componentSearchSort__activeSwitch">Installed</md-switch>
-              </span>
-          </div> -->
-
+  <div *ngIf="components" class="componentView">
+    <div class="componentView__componentSearchSort">
+      <span class="componentSearchSort__componentSearch">
+        <mat-form-field class="componentSearch__input">
+          <input matInput type="search" placeholder="Search Components" [(ngModel)]="componentSearch" id="searchComponentInput" aria-label="Search Bike Components" />
+          <button mat-button *ngIf="componentSearch" matSuffix mat-icon-button aria-label="Clear" (click)="componentSearch=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </span>
+    
+      <span class="componentSearchSort__componentSortBy">
+        <mat-form-field class="componentSearchSort__sortDropDown">
+          <!-- in AngularJS I used a "trackBy" property on this select. Is there an equivalent in Angular 2+? -->
+          <mat-select [(ngModel)]="sortSelector" (ngModelChange)="setSortOrder(sortSelector)" placeholder="Sort Components" aria-label="Sort Components By">
+            <mat-option [value]="sort" *ngFor="let sort of sortOrderArray">{{ sort.title }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </span>
+      <span>
+        <mat-slide-toggle [(ngModel)]="isSortReverse" id="sortReverseBox" aria-label="Reverse Results" class="componentSearchSort__reverseSwitch">Reverse</mat-slide-toggle>
+      </span>
+      
+      
+      <span>
+        <mat-slide-toggle [(ngModel)]="showActiveComponents" aria-label="Active Components Only" class="componentSearchSort__activeSwitch">Installed</mat-slide-toggle>
+      </span>
+    </div>
+</div>
 <!-- Component Details -->
 <!-- <div layout="column" class="componentView__details">
   
