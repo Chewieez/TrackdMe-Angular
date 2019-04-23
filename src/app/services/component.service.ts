@@ -49,9 +49,9 @@ export class ComponentService {
 //   }
 // }
 
-  public getBikeComponents(fbUID): Observable<Array<Component>> {
+  public getBikeComponents(fbUID, currentBikeId): Observable<Array<BikeComponent>> {
     if (!this.componentsCache$) {
-      this.componentsCache$ = this._requestBikeComponents(fbUID)
+      this.componentsCache$ = this._requestBikeComponents(fbUID, currentBikeId)
         .pipe(
           shareReplay(CACHE_SIZE)
         );
@@ -59,13 +59,14 @@ export class ComponentService {
     }
   }
 
-private _requestBikeComponents(fbUID) {
-  return this._http.get<Component[]>(`${API_URL}.json?orderBy="userId"&equalTo="${fbUID}"`)
+private _requestBikeComponents(fbUID, currentBikeId) {
+  return this._http.get<BikeComponent[]>(`${API_URL}.json?orderBy="userId"&equalTo="${fbUID}"`)
   .pipe(
     map(res => {
       const components = res.valueOf();
       return Object.keys(components)
-      .map(key => components[key]);
+      .map(key => components[key])
+      .filter(component => component.bikeFbId === currentBikeId);
     }));
 }
 

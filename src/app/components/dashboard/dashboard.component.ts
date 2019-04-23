@@ -56,9 +56,9 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  public getComponents(): void {
+  public getComponents(currentBikeId): void {
     if (this.user) {
-      this._componentService.getBikeComponents(this.user.uid).subscribe(data => {
+      this._componentService.getBikeComponents(this.user.uid, currentBikeId).subscribe(data => {
         this.components = data;
         console.log("retrieved components.");
       });
@@ -69,6 +69,13 @@ export class DashboardComponent implements OnInit {
     console.log("this should send user to add a bike, or open a add-bike modal");
   }
 
+  public changeCompActiveState(comp) {
+    console.log("Send the change to server");
+  }
+
+  public sendToAddComponent() {
+    console.log("add component to database")
+  }
 
   public signin(): void {
     this._auth.login(this.model.userEmail, this.model.userPassword);
