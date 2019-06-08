@@ -167,7 +167,7 @@
       <span class="componentSearchSort__componentSearch">
         <mat-form-field class="componentSearch__input">
           <input matInput type="search" placeholder="Search Components" [(ngModel)]="componentSearch" id="searchComponentInput" aria-label="Search Bike Components" />
-          <button mat-button *ngIf="componentSearch" matSuffix mat-icon-button aria-label="Clear" (click)="componentSearch=''">
+          <button *ngIf="componentSearch" matSuffix mat-icon-button aria-label="Clear" (click)="componentSearch=''">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
@@ -184,112 +184,14 @@
       <span>
         <mat-slide-toggle [(ngModel)]="isSortReverse" id="sortReverseBox" aria-label="Reverse Results" class="componentSearchSort__reverseSwitch">Reverse</mat-slide-toggle>
       </span>
-      
-      
       <span>
         <mat-slide-toggle [(ngModel)]="showActiveComponents" aria-label="Active Components Only" class="componentSearchSort__activeSwitch">Installed</mat-slide-toggle>
       </span>
     </div>
 </div>
-<!-- Component Details -->
-<!-- <div layout="column" class="componentView__details"> -->
-  
-              <div ng-if="!components">
-                  <h4>Click the button to start tracking your first component</h4>
-                  <button mat-button class="mat-raised mat-accent" (click)="sendToAddComponent()">Add A Component</button>
-              </div>
+<div *ngIf="!components">
+    <h4>Click the button to start tracking your first component</h4>
+    <button mat-raised-button  color="primary" (click)="sendToAddComponent()">Add A Component</button>
+</div>
 
-              <!-- <div *ngFor="let comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse.setting"> -->
-              <div *ngFor="let comp of components">
-                <!-- <div *ngIf="comp.active === activeFlag.show">  -->
-                  <mat-card class="componentView__card">
-                      <mat-card-title class="componentView__header-c">
-                          <!-- <md-card-avatar> -->
-                              <!-- <mat-icon class="componentView__compIcon" md-svg-src="{{comp.type.icon}}"></mat-icon> -->
-                          <!-- </md-card-avatar> -->
-                          <h3 class="componentView__compHeader">
-                              <span class="md-title compHeader__title"> {{ comp.type.name }}</span>
-                              <span class="md-subhead compHeader__subHeader"> {{ comp.brandName }} {{ comp.modelName }}</span>
-                          </h3>
-                          
-                          <!-- <span flex></span> -->
-                          
-                          <mat-menu #componentMenu="matMenu"> 
-                            <button mat-menu-item (click)="sendToEditComponent(comp)" aria-label="Edit Component">
-                                <mat-icon>mode_edit</mat-icon>Edit
-                              </button>
-                              <button mat-menu-item (click)="showConfirmComponent($event, comp)" aria-label="Delete Component">
-                                <mat-icon>delete</mat-icon>Delete
-                              </button>
-                          </mat-menu>
-                          <button mat-menu-item (click)="sendToEditComponent(comp)" aria-label="Component menu" class="mdotCtrlMenu comp__dotCtrlMenu" [matMenuTriggerFor]="componentMenu">
-                              <mat-icon>mode_edit</mat-icon>Edit
-                          </button>
-                          
-                      </mat-card-title>
-
-                      <mat-card-content>
-                          <span>
-                              <h5>
-                                  <span>
-                                      Mileage:
-                                  </span>
-                                  <!-- <span flex></span> -->
-                                  <span>
-                                      <mat-checkbox [(ngModel)]="comp.active" id="activeComp" class="comp__activeCheckbox" (change)="changeCompActiveState(comp)">
-                                      Installed</mat-checkbox>
-                                  </span>
-                              </h5>
-                              <p>{{ comp.mileage | number }} miles </p>
-                          </span>
-                          <!-- <br>
-                          <span ng-if="comp.installationDate" layout>
-                              <span ng-show="comp.active">
-                                  <h5>Installed for:</h5>
-                                 <p ng-show="((todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30) < 12"> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 | number:0 }}  months </p>
-                                 <p ng-show="((todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30) > 12"> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 / 12 | number:1 }}  years </p>
-                              </span>   
-                              <span flex></span>
-                              <span ng-show="comp.active">
-                                  <h5>Installation Date:</h5>
-                                  <p> {{ comp.installationDate | date }} </p>
-                              </span>
-                          </span>
-                          <br>
-                          <v-accordion class="vAccordion--default compview__ExtraDetails">
-                              <v-pane>
-                                  <v-pane-header class="compExtraDetails__header" aria-controls="{{ comp.fbId }}-content">
-                                      More Details...
-                                  </v-pane-header>
-                      
-                                  <v-pane-content aria-labelledby="{{ comp.fbId }}-header">
-                                      
-                                      <span ng-if="comp.serial">
-                                          <h5>Serial:</h5>
-                                          <p> {{comp.serial}}</p>
-                                      </span>
-                                      <span ng-if="comp.type.tips">
-                                          <md-button class="md-primary md-raised" ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</md-button>
-                                      </span>
-                                      <span>
-                                          <h5 class="compExtraDetails__notesHeader">Notes:</h5>
-                                          <p class="compExtraDetails__notes">{{ comp.notes }}</p>
-                                      </span>
-                                  </v-pane-content>
-                              </v-pane>
-                          </v-accordion>
-
-                          
-                          <div class="card-media" layout layout-align="space-around center" layout-padding layout-wrap layout-fill>
-                              <div ng-repeat="image in comp.images" class="compImageWhiteBox" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="35" layout layout-align="center center">
-                                  <img ng-src="{{ image }}" class="compImage" ng-click="displayPhoto($event)"/>
-                              </div>
-                          </div>  -->
-                          
-                      </mat-card-content>
-                  </mat-card>
-                <!-- </div> -->
-              </div> 
-          <!-- </div>   -->
-    <!-- </div> -->
-<!-- </div> -->
+<app-component-list [components]="components"></app-component-list>

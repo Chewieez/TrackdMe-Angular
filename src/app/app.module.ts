@@ -9,19 +9,22 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
+import { LayoutModule } from '@angular/cdk/layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './modules/material/material.module';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavComponent } from './components/nav/nav.component';
-import { LayoutModule } from '@angular/cdk/layout';
 import { AuthInterceptor } from './http-interceptors/auth-interceptor';
+import { ComponentListComponent } from './components/component-list/component-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    NavComponent
+    NavComponent,
+    ComponentListComponent
   ],
   imports: [
     FormsModule,
@@ -32,6 +35,7 @@ import { AuthInterceptor } from './http-interceptors/auth-interceptor';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     LayoutModule,
+    FlexLayoutModule,
     MaterialModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
