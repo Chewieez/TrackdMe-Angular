@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BikeComponent } from 'src/app/models/bike-component.model';
+import { BikeComponent } from '../../models/bike-component.model';
 
 @Component({
   selector: 'app-component-list',

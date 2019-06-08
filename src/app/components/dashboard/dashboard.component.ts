@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { BikesService } from '../../services/bikes.service';
 import { Bike } from '../../models/bike.model';
-import { first, tap } from '../../../../node_modules/rxjs/operators';
+import { first } from '../../../../node_modules/rxjs/operators';
 import { ComponentService } from '../../services/component.service';
 import { BikeComponent } from '../../models/bike-component.model';
 
