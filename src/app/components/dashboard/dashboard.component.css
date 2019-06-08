@@ -19,6 +19,10 @@
     max-height: 352px;
 }
 
+.dashboard-container {
+    height: 100vh;
+}
+
 /* 
 .dashboard__header.ng-hide {
     opacity: 0;

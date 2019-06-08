@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   public bikes: Bike[];
   public currentBike: Bike;
   public components: BikeComponent[];
+  public filteredComponents: BikeComponent[];
   public componentSearch: string;
   public sort: any;
   public isSortReverse = false;
@@ -56,10 +57,11 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  public getComponents(currentBikeId): void {
+  public getComponents(currentBikeId: string): void {
     if (this.user) {
       this._componentService.getBikeComponents(this.user.uid, currentBikeId).subscribe(data => {
         this.components = data;
+        this.filteredComponents = this.components;
         console.log("retrieved components.");
       });
     }
@@ -75,6 +77,14 @@ export class DashboardComponent implements OnInit {
 
   public sendToAddComponent() {
     console.log("add component to database")
+  }
+
+  public filterComponents(showActive: boolean) {
+    if (showActive) {
+      this.filteredComponents = this.components.filter(comp => comp.active);
+    } else {
+      this.filteredComponents = this.components.filter(comp => !comp.active);
+    }
   }
 
   public signin(): void {

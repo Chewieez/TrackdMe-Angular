@@ -1,4 +1,4 @@
-<p *ngIf="user">Welcome {{ user.email }}!</p>
+<!-- <p *ngIf="user">Welcome {{ user.email }}!</p>
 <p *ngIf="user">{{ user.uid }} </p>
 <div *ngIf="!user">
   <label>Email</label>
@@ -7,9 +7,9 @@
   <input type="password" [(ngModel)]="model.userPassword">
   <input type="button" (click)="signin()" value="Sign In">
   <input type="button" (click)="signup()" value="Sign Up">
-</div>
+</div> -->
 
-<div class="dashboard container">
+<div class="dashboard-container" fxLayout="column" fxLayoutAlign="center" fxFlexFill>
 
   <!-- ACTION BUTTON - fab button to add bike, import bike, add component -->
   <!-- <md-fab-speed-dial md-direction="up" class="md-scale md-fab-bottom-right" >
@@ -37,35 +37,34 @@
 
       </md-fab-actions>
   </md-fab-speed-dial> -->
-    <div class="d-flex flex-row justify-content-end">
-      <div class="dashboard__refresh">
-        <button mat-icon-button (click)="refresh()" class="">
-          <mat-icon matTooltip="Refresh" aria-label="Button to refresh the dashboard">autorenew</mat-icon>
-        </button>
-      </div>
+  <div class="" fxFlex="20%" fxFlexAlign="end">
+    <div class="dashboard__refresh">
+      <button mat-icon-button (click)="refresh()" class="">
+        <mat-icon matTooltip="Refresh" aria-label="Button to refresh the dashboard">autorenew</mat-icon>
+      </button>
     </div>
+  </div>
 
-    <div class="d-flex flex-row justify-content-center">
-      <div class="dashboard__header" class="">
-        <img src="./assets/images/bikeHeader_dreamstime_71468702_web.png" class="dashboard__headerImage" alt="BikeTracker Icon" />
-      </div>
+  <div fxFlex="100%" fxFlexAlign="center">
+    <div class="dashboard__header" class="">
+      <img src="./assets/images/bikeHeader_dreamstime_71468702_web.png" class="dashboard__headerImage"
+        alt="BikeTracker Icon" />
     </div>
-
-    <!-- Progress meter -->
-    <!-- <div ng-show="progressFlag" ng-hide="!progressFlag" class="progressSVG">
+  </div>
+  <!-- Progress meter -->
+  <!-- <div ng-show="progressFlag" ng-hide="!progressFlag" class="progressSVG">
       <img src="./assets/images/progressGear.svg" alt="Loading Content" id="svgspin" />
     </div>
      -->
-  
-
-
-  <div class="row dashboard__content">
-    <div class="bikeView">
-      <div ng-show="bikes.length !== 0" class="bikeView__dropdown">
+  <div class="dashboard__content" fxFlex="100%" fxFlexAlign="center">
+    <div class="bikeView" fxLayout="column" >
+      <div ng-show="bikes.length !== 0" class="bikeView__dropdown" fxFlex="100%" fxFlexAlign="center">
         <mat-form-field class="bikeView__dropdown-ic">
-          <mat-select [(ngModel)]="currentBike" (ngModelChange)="getComponents(currentBike.fbId)" id="currentBikeSelector" placeholder="Choose a Bike" aria-placeholder="Choose a Bike">
+          <mat-select [(ngModel)]="currentBike" (ngModelChange)="getComponents(currentBike.fbId)"
+            id="currentBikeSelector" placeholder="Choose a Bike" aria-placeholder="Choose a Bike">
             <mat-optgroup label="Bikes">
-              <mat-option [value]="bike" *ngFor="let bike of bikes"> {{ bike.brandName }} {{ bike.modelName }}</mat-option>
+              <mat-option [value]="bike" *ngFor="let bike of bikes"> {{ bike.brandName }} {{ bike.modelName }}
+              </mat-option>
             </mat-optgroup>
             <mat-option (click)="sendToAddBike()">
               <span> Add A New Bike... </span>
@@ -73,125 +72,132 @@
           </mat-select>
         </mat-form-field>
       </div>
-
-  <!-- <div ng-if="!currentUserProfile">
+      <!-- <div ng-if="!currentUserProfile">
         <h2>Create a user profile first, then add a bike.</h2>
         <md-button ng-href="/#!/profile" class="md-raised md-primary">Create Profile</md-button>
       </div>
-    
-    <div ng-show="bikes.length === 0 && currentUserProfile" class="bikeView__addBikeButtons " layout="column">
-      <h2 ng-if="!currentUserProfile.stravaId">Add a bike to start tracking your components. </h2>
-      <md-button class="md-raised md-primary" ng-click="sendToAddBike()">Add A Bike</md-button>
-      <h2 ng-if="!currentUserProfile.stravaId">Or link your Strava account on your Profile Page to import your saved bikes.</h2>
-      <h2 ng-if="currentUserProfile.stravaId">Choose an option to start tracking a bike and it's components.</h2>
-      <md-button ng-if="!currentUserProfile.stravaId" class="md-raised" ng-href="/#!/profile">Profile</md-button>
-      <md-button ng-if="currentUserProfile.stravaId" class="md-raised md-warn" ng-click="importBikes()">Import Bike from Strava</md-button>
-    </div>
-  -->
-      <mat-card *ngIf="currentBike" class="bikeView__details" id="currentBikeDetails">
-        <mat-card-title>
-          <h2>
-            <!-- <mdi-icon mdi-svg-src="/images/noun_1067030_cc.svg" style="width: 50px; height: auto" class="bikeView__icon"></mdi-icon> -->
-            <span class="bikeView__bikeHeader"> {{ currentBike.brandName }} {{ currentBike.modelName}}</span>
-            <mat-menu #appMenu="matMenu">
-              <button mat-menu-item (click)="sendToEditBike(currentBike)" aria-label="Edit Bike">
-                <mat-icon>mode_edit</mat-icon>Edit
-              </button>
-              <button mat-menu-item (click)="showConfirmBike($event, currentBike)" aria-label="Delete Bike">
-                <mat-icon>delete</mat-icon>Delete
-              </button>
-            </mat-menu>
-            <button mat-icon-button aria-label="Bike menu" class="md-icon-button dotCtrlMenu" [matMenuTriggerFor]="appMenu">
-                <mat-icon>more_vert</mat-icon>
-            </button>
-          </h2>
-        </mat-card-title>
-        <mat-card-content>
-          <div>
-            <span class="bikeView__mileage">Mileage: {{currentBike.mileage}} miles</span>
-            <span *ngIf="!(currentBike)?.stravaBikeId" class="addMileageBtn">
-              <button mat-button class="mat-raised mat-accent addMileageBtn" (click)="addMileageModal()">Add Mileage</button>
-            </span>
-            <span>
-              <!-- <mat-icon *ngIf="currentBike.stravaBikeId" mat-svg-src="./images/api_logo_pwrdBy_strava_horiz_light.svg" class="poweredByStravaIcon"></mat-icon> -->
-              <!-- <mat-tooltip md-direction="top" md-delay="600">Mileage synced with Strava</mat-tooltip> -->
-            </span>
-          </div>
-          <br>
-          <br>
-          <mat-accordion class="vAccordion--default bikeView__extraDetails">
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  More Details...
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              
-              <div>
-                <span *ngIf="currentBike.serial">
-                  <h5>Serial Number:</h5>
-                  <p>{{currentBike.serial}}</p>
-                </span>
-                <span *ngIf="currentBike.purchaseDate">
-                  <h5>Purchased:</h5>
-                  <p> {{currentBike.purchaseDate | date}}</p>
-                </span>
-                <span *ngIf="currentBike.notes">
-                  <h5>Notes:</h5>
-                  <p> {{currentBike.notes}}</p>
-                </span>
-              </div>
-            </mat-expansion-panel>
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                Images
-              </mat-expansion-panel-header>
-              <div class="row justify-space-around">
-                <div *ngFor="let image of currentBike.images" class="bikeImages__bikeImageWhiteBox">
-                  <img [src]="image" class="bikeImages__bikeImage" (click)="displayPhoto($event)"/>
+      <div ng-show="bikes.length === 0 && currentUserProfile" class="bikeView__addBikeButtons " layout="column">
+        <h2 ng-if="!currentUserProfile.stravaId">Add a bike to start tracking your components. </h2>
+        <md-button class="md-raised md-primary" ng-click="sendToAddBike()">Add A Bike</md-button>
+        <h2 ng-if="!currentUserProfile.stravaId">Or link your Strava account on your Profile Page to import your saved bikes.</h2>
+        <h2 ng-if="currentUserProfile.stravaId">Choose an option to start tracking a bike and it's components.</h2>
+        <md-button ng-if="!currentUserProfile.stravaId" class="md-raised" ng-href="/#!/profile">Profile</md-button>
+        <md-button ng-if="currentUserProfile.stravaId" class="md-raised md-warn" ng-click="importBikes()">Import Bike from Strava</md-button>
+      </div>
+      -->
+      <div fxFlex="100%" fxFlexAlign="center">
+        <mat-card *ngIf="currentBike" class="bikeView__details" id="currentBikeDetails" fxFlex>
+          <mat-card-header>
+            <mat-card-title>
+              <h2>
+                <!-- <mdi-icon mdi-svg-src="/images/noun_1067030_cc.svg" style="width: 50px; height: auto" class="bikeView__icon"></mdi-icon> -->
+                <span class="bikeView__bikeHeader"> {{ currentBike.brandName }} {{ currentBike.modelName}}</span>
+                <mat-menu #appMenu="matMenu">
+                  <button mat-menu-item (click)="sendToEditBike(currentBike)" aria-label="Edit Bike">
+                    <mat-icon>mode_edit</mat-icon>Edit
+                  </button>
+                  <button mat-menu-item (click)="showConfirmBike($event, currentBike)" aria-label="Delete Bike">
+                    <mat-icon>delete</mat-icon>Delete
+                  </button>
+                </mat-menu>
+                <button mat-icon-button aria-label="Bike menu" class="md-icon-button dotCtrlMenu"
+                  [matMenuTriggerFor]="appMenu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+              </h2>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div>
+              <span class="bikeView__mileage">Mileage: {{currentBike.mileage}} miles</span>
+              <span *ngIf="!(currentBike)?.stravaBikeId" class="addMileageBtn">
+                <button mat-button class="mat-raised mat-accent addMileageBtn" (click)="addMileageModal()">Add
+                  Mileage</button>
+              </span>
+              <span>
+                <!-- <mat-icon *ngIf="currentBike.stravaBikeId" mat-svg-src="./images/api_logo_pwrdBy_strava_horiz_light.svg" class="poweredByStravaIcon"></mat-icon> -->
+                <!-- <mat-tooltip md-direction="top" md-delay="600">Mileage synced with Strava</mat-tooltip> -->
+              </span>
+            </div>
+            <br>
+            <br>
+            <mat-accordion class="vAccordion--default bikeView__extraDetails">
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    More Details...
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                  <span *ngIf="currentBike.serial">
+                    <h5>Serial Number:</h5>
+                    <p>{{currentBike.serial}}</p>
+                  </span>
+                  <span *ngIf="currentBike.purchaseDate">
+                    <h5>Purchased:</h5>
+                    <p> {{currentBike.purchaseDate | date}}</p>
+                  </span>
+                  <span *ngIf="currentBike.notes">
+                    <h5>Notes:</h5>
+                    <p> {{currentBike.notes}}</p>
+                  </span>
                 </div>
-              </div> 
-            </mat-expansion-panel>
-          </mat-accordion>
-        </mat-card-content>
-      </mat-card>
+              </mat-expansion-panel>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  Images
+                </mat-expansion-panel-header>
+                <div class="row justify-space-around">
+                  <div *ngFor="let image of currentBike.images" class="bikeImages__bikeImageWhiteBox">
+                    <img [src]="image" class="bikeImages__bikeImage" (click)="displayPhoto($event)" />
+                  </div>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
   </div>
   <!-- End of Bike View Section -->
-  
+
   <mat-divider *ngIf="currentBike"></mat-divider>
 
-<!-- Component Section -->
-  <div *ngIf="components" class="componentView">
+  <!-- Component Section -->
+  <div *ngIf="components" class="componentView" fxFlex="100%" fxFlexAlign="center">
     <div class="componentView__componentSearchSort">
       <span class="componentSearchSort__componentSearch">
         <mat-form-field class="componentSearch__input">
-          <input matInput type="search" placeholder="Search Components" [(ngModel)]="componentSearch" id="searchComponentInput" aria-label="Search Bike Components" />
+          <input matInput type="search" placeholder="Search Components" [(ngModel)]="componentSearch"
+            id="searchComponentInput" aria-label="Search Bike Components" />
           <button *ngIf="componentSearch" matSuffix mat-icon-button aria-label="Clear" (click)="componentSearch=''">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
       </span>
-    
+
       <span class="componentSearchSort__componentSortBy">
         <mat-form-field class="componentSearchSort__sortDropDown">
-          <!-- in AngularJS I used a "trackBy" property on this select. Is there an equivalent in Angular 2+? -->
-          <mat-select [(ngModel)]="sortSelector" (ngModelChange)="setSortOrder(sortSelector)" placeholder="Sort Components" aria-label="Sort Components By">
+          <!-- in AngularJS I used a "trackBy" property on this select. Is there an equivalent in Angular 2+? YES there is -->
+          <mat-select [(ngModel)]="sortSelector" (ngModelChange)="setSortOrder(sortSelector)"
+            placeholder="Sort Components" aria-label="Sort Components By">
             <mat-option [value]="sort" *ngFor="let sort of sortOrderArray">{{ sort.title }}</mat-option>
           </mat-select>
         </mat-form-field>
       </span>
       <span>
-        <mat-slide-toggle [(ngModel)]="isSortReverse" id="sortReverseBox" aria-label="Reverse Results" class="componentSearchSort__reverseSwitch">Reverse</mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]="isSortReverse" id="sortReverseBox" aria-label="Reverse Results"
+          class="componentSearchSort__reverseSwitch">Reverse</mat-slide-toggle>
       </span>
       <span>
-        <mat-slide-toggle [(ngModel)]="showActiveComponents" aria-label="Active Components Only" class="componentSearchSort__activeSwitch">Installed</mat-slide-toggle>
+        <mat-slide-toggle (change)="filterComponents(showActiveComponents)" [(ngModel)]="showActiveComponents"
+          aria-label="Active Components Only" class="componentSearchSort__activeSwitch">Installed</mat-slide-toggle>
       </span>
     </div>
-</div>
-<div *ngIf="!components">
+  </div>
+  <div *ngIf="!components" fxFlex="100%" fxFlexAlign="center">
     <h4>Click the button to start tracking your first component</h4>
-    <button mat-raised-button  color="primary" (click)="sendToAddComponent()">Add A Component</button>
-</div>
+    <button mat-raised-button color="primary" (click)="sendToAddComponent()">Add A Component</button>
+  </div>
 
-<app-component-list [components]="components"></app-component-list>
+  <app-component-list [components]="filteredComponents"></app-component-list>

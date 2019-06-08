@@ -14,6 +14,7 @@ const CACHE_SIZE = 1; // the number of elements that are cached and replayed for
 export class ComponentService {
   public user: any;
   public componentsCache$: Observable<Array<BikeComponent>>;
+  public currentBikeId: string;
 
   constructor(private _auth: AuthService, private _http: HttpClient) { }
 
@@ -50,12 +51,22 @@ export class ComponentService {
 // }
 
   public getBikeComponents(fbUID, currentBikeId): Observable<Array<BikeComponent>> {
-    if (!this.componentsCache$) {
+    // check if we have cached components for the currentBike.
+    // TODO look into creating a way to store separate cache for each bike and search 
+    // the cache object for a matching bike. Currently we are only storing components for 
+    // one bike in cache at a time.    
+    if (this.currentBikeId !== currentBikeId || !this.componentsCache$) {
       this.componentsCache$ = this._requestBikeComponents(fbUID, currentBikeId)
-        .pipe(
-          shareReplay(CACHE_SIZE)
-        );
-        return this.componentsCache$;
+      .pipe(
+        shareReplay(CACHE_SIZE)
+      );
+
+      this.currentBikeId = currentBikeId;
+      return this.componentsCache$;
+    }
+
+    if (this.currentBikeId === currentBikeId && this.componentsCache$) {
+      return this.componentsCache$;
     }
   }
 

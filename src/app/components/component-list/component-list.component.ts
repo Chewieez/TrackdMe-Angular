@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { BikeComponent } from 'src/app/models/bike-component.model';
 
 @Component({
   selector: 'app-component-list',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./component-list.component.css']
 })
 export class ComponentListComponent implements OnInit {
-  @Input() components: Component[];
+  @Input() components: BikeComponent[];
 
 
   constructor() { }
