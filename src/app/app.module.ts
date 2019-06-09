@@ -41,9 +41,13 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     MaterialModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'home', redirectTo: 'dashboarsd' },
-      { path: 'dashboard', component: DashboardComponent },     
-      { path: '**', redirectTo: 'dashboard' }
+      { path: 'home', redirectTo: 'dashboard' },
+      { 
+        path: 'wishlist',
+        loadChildren: () => import('./modules/wishlist/wishlist.module').then(mod => mod.WishlistModule)
+      },
+      { path: 'dashboard', component: DashboardComponent },  
+      // { path: '**', redirectTo: 'dashboard' }
     ])
   ],
   providers: [

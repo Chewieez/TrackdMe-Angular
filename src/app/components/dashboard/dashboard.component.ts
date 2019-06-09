@@ -46,9 +46,9 @@ export class DashboardComponent implements OnInit {
     // });
   }
 
-  public getCurrentUser() {
-    return this._auth.getAuthState().pipe(first());
-  }
+  // public getCurrentUser() {
+  //   return this._auth.getAuthState().pipe(first());
+  // }
 
   public getUserBikes(): void {
     if (this.user) {

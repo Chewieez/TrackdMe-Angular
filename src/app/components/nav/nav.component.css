@@ -16,6 +16,15 @@
   position: sticky;
   top: 0;
 }
+
+.site-content-container {
+  margin-top: 65px;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: scroll;
+} 
+
+
 /* 
 .nav__profileName {
   margin-top: 1.15em;

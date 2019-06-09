@@ -1,0 +1,5 @@
+.wishlist-container .mat-expansion-panel-header-description {
+    justify-content: end;
+    align-items: center;
+    flex-grow: 0;
+}

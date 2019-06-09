@@ -24,8 +24,8 @@
     max-height: 352px;
 }
 
-.dashboard-container {
-    height: 100vh;
+.dashboard__refresh {
+    margin-top: 10px;
 }
 
 /* 

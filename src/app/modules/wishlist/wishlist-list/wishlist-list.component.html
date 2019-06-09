@@ -1,0 +1,80 @@
+<div class="wishlist-container">
+
+    <h1 layout layout-align="center"> Wishlist </h1>
+    
+    <!-- <app-spinner *ngIf="progressFlag"></app-spinner> -->
+
+    <!-- ACTION BUTTON fab button in lower righ corner used to add a new wishlist item -->
+    <!-- <md-button class="md-fab md-warn md-fab-bottom-right" style="position:fixed !important;" aria-label="Add A Wish">
+        <md-tooltip md-direction="left">Add A Wish</md-tooltip>
+        <md-icon md-font-icon="material-icons" class="addWishButton" ng-click="createWish()">add</md-icon>
+    </md-button> -->
+
+    <div *ngIf="!progressFlag" class="wishlist__content" fxLayout="column">
+
+        <!-- <div ng-if="createMode || editMode" class="wishlist__createForm-c" layout="column" layout-align="center center">
+            <h2>New Item:</h2>
+            <form ng-submit="saveWish()" name="wishForm" ng-model="newWish" class="wishlist__createForm">
+                <md-input-container>
+                    <label>Title:</label>
+                    <input type="text" ng-model="newWish.title" required="string" />
+                </md-input-container>
+                <md-input-container>
+                    <label>Info:</label>
+                    <textarea ng-model="newWish.info" rows="1"></textarea>
+                </md-input-container>
+    
+                <input ng-if="!editMode" type="submit" value="Save Wish" class="md-button md-raised md-primary">
+                <input ng-if="editMode" type="submit" value="Update Wish" class="md-button md-raised md-primary">
+                <md-button type="reset" class="md-raised md-warn">reset</md-button>
+                <md-button ng-if="createMode || editMode" ng-click="cancelWish()" class="md-warn">Cancel</md-button>
+            </form>
+
+        </div> -->
+
+        <div fxLayout="row"  class="wishView__wishSearchSort" fxFlexAlign="center">
+            <div fxFlex="40" class="wishView__wishSearch" >
+                <!-- <mat-form-field>
+                    <input matInput type="search" [(ngModel)]="wishSearch" id="wishSearch" aria-label="Search Wishes" size="300">
+                    <label for="wishSearch">Search Wishes:</label>
+                </mat-form-field> -->
+            </div>
+            <div fxFlexOffset="30" fxFlex="25">
+                <!-- <mat-form-field class="wishView__wishSort">
+                    <label>Sort Wishes</label>
+                    <mat-select [(ngModel)]="sortSelector" ng-model-options="{trackBy: '$sort.title'}" ng-change="setSortOrder(sortSelector)" aria-label="Sort Components By">
+                        <mat-option ng-value="sort" ng-repeat="sort in sortOrderArray">{{ sort.title }}</mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+            </div>
+            <div fxFlex="15">
+                <!-- <mat-slide-toggle [(ngModel)]="sortReverse.setting" id="sortReverseBox" class="wishView__reverseSwitch" aria-label="Reverse Results">Reverse</mat-slide-toggle> -->
+            </div>    
+        </div>
+        <div class="wishlist__itemList">
+          <mat-accordion class="wishAccordionList" multi="true">
+            <mat-expansion-panel *ngFor="let wish of wishlist">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <span >{{ wish.title }}</span>
+                </mat-panel-title>
+                <mat-panel-description>
+                  <span class="wish__date">{{ wish.dateAdded | date:'shortDate' }}</span>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div>
+                {{ wish.info }}
+                <mat-action-row>
+                  <button mat-button (click)="editWish(wish)" class="md-icon-button md-secondary" aria-label="edit wishlist item">
+                    <mat-icon matTooltip="Edit" [matTooltipShowDelay]="600">mode_edit</mat-icon>
+                  </button>
+                  <button mat-button (click)="showConfirm($event, wish)" class="md-icon-button deleteBtn" aria-label="delete wishlist item">
+                    <mat-icon matTooltip="Delete" [matTooltipShowDelay]="600">delete</mat-icon>
+                  </button>
+                </mat-action-row>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+    </div>
+</div>

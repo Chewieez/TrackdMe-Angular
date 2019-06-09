@@ -29,7 +29,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" style="position: absolute; top: 0; left: 0;">
       <button *ngIf="!isNavOpen" class="navToggleBtn" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
@@ -39,7 +39,9 @@
       <h5 class="nav__appName">Trackd.Me</h5>
     </mat-toolbar>
 
-    <app-dashboard></app-dashboard>
-
+    <!-- <app-dashboard></app-dashboard> -->
+    <div class="site-content-container">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
