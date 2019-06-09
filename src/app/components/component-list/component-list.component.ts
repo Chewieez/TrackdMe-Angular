@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BikeComponent } from '../../models/bike-component.model';
+import {DomSanitizer} from '@angular/platform-browser';
+import {MatIconRegistry} from '@angular/material/icon';
 
 @Component({
   selector: 'app-component-list',
@@ -10,7 +12,11 @@ export class ComponentListComponent implements OnInit {
   @Input() components: BikeComponent[];
 
 
-  constructor() { }
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon(
+      'thumbs-up',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/img/examples/thumbup-icon.svg'));
+   }
 
   ngOnInit() {
 

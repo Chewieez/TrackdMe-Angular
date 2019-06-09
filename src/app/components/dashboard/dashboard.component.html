@@ -52,12 +52,9 @@
     </div>
   </div>
   <!-- Progress meter -->
-  <!-- <div ng-show="progressFlag" ng-hide="!progressFlag" class="progressSVG">
-      <img src="./assets/images/progressGear.svg" alt="Loading Content" id="svgspin" />
-    </div>
-     -->
+  <app-spinner *ngIf="progressFlag"></app-spinner>
   <div class="dashboard__content" fxFlex="100%" fxFlexAlign="center">
-    <div class="bikeView" fxLayout="column" >
+    <div class="bikeView" fxLayout="column">
       <div ng-show="bikes.length !== 0" class="bikeView__dropdown" fxFlex="100%" fxFlexAlign="center">
         <mat-form-field class="bikeView__dropdown-ic">
           <mat-select [(ngModel)]="currentBike" (ngModelChange)="getComponents(currentBike.fbId)"
@@ -115,8 +112,8 @@
                   Mileage</button>
               </span>
               <span>
-                <!-- <mat-icon *ngIf="currentBike.stravaBikeId" mat-svg-src="./images/api_logo_pwrdBy_strava_horiz_light.svg" class="poweredByStravaIcon"></mat-icon> -->
-                <!-- <mat-tooltip md-direction="top" md-delay="600">Mileage synced with Strava</mat-tooltip> -->
+                <mat-icon *ngIf="currentBike.stravaBikeId" svgIcon="powered-by-strava-horiz" class="poweredByStravaIcon" matTooltip="Mileage synced with Strava"
+                [matTooltipShowDelay]="600"></mat-icon>
               </span>
             </div>
             <br>
@@ -164,9 +161,9 @@
   <mat-divider *ngIf="currentBike"></mat-divider>
 
   <!-- Component Section -->
-  <div *ngIf="components" class="componentView" fxFlex="100%" fxFlexAlign="center">
-    <div class="componentView__componentSearchSort">
-      <span class="componentSearchSort__componentSearch">
+  <div *ngIf="components" class="componentView" fxFlex="100%" fxFlexAlign="stretch">
+    <div class="componentView__componentSearchSort" fxLayout="row" fxFlexAlign="space-around center">
+      <div class="componentSearchSort__componentSearch" fxFlex>
         <mat-form-field class="componentSearch__input">
           <input matInput type="search" placeholder="Search Components" [(ngModel)]="componentSearch"
             id="searchComponentInput" aria-label="Search Bike Components" />
@@ -174,9 +171,8 @@
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
-      </span>
-
-      <span class="componentSearchSort__componentSortBy">
+      </div>
+      <div class="componentSearchSort__componentSortBy" fxFlex>
         <mat-form-field class="componentSearchSort__sortDropDown">
           <!-- in AngularJS I used a "trackBy" property on this select. Is there an equivalent in Angular 2+? YES there is -->
           <mat-select [(ngModel)]="sortSelector" (ngModelChange)="setSortOrder(sortSelector)"
@@ -184,15 +180,17 @@
             <mat-option [value]="sort" *ngFor="let sort of sortOrderArray">{{ sort.title }}</mat-option>
           </mat-select>
         </mat-form-field>
-      </span>
-      <span>
-        <mat-slide-toggle [(ngModel)]="isSortReverse" id="sortReverseBox" aria-label="Reverse Results"
+      </div>
+      <div class="toggles" fxLayout="row" fxFlexAlign="end center">
+        <div class="search-toggle" fxFlex fxFlexAlign="start">
+          <mat-slide-toggle [(ngModel)]="isSortReverse" id="sortReverseBox" aria-label="Reverse Results"
           class="componentSearchSort__reverseSwitch">Reverse</mat-slide-toggle>
-      </span>
-      <span>
-        <mat-slide-toggle (change)="filterComponents(showActiveComponents)" [(ngModel)]="showActiveComponents"
+        </div>
+        <div class="search-toggle" fxFlex fxFlexAlign="start">
+          <mat-slide-toggle (change)="filterComponents(showActiveComponents)" [(ngModel)]="showActiveComponents"
           aria-label="Active Components Only" class="componentSearchSort__activeSwitch">Installed</mat-slide-toggle>
-      </span>
+        </div>
+      </div>
     </div>
   </div>
   <div *ngIf="!components" fxFlex="100%" fxFlexAlign="center">

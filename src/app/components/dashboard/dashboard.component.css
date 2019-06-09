@@ -8,9 +8,14 @@
   border-bottom: 1px solid  grey
 }
 
+.dashboard__content {
+    padding-bottom: 20px;
+}
+
 .dashboard__header {
     /* margin-top: -35px; */
 }
+
 .dashboard__headerImage {
     /* height: 55%; */
     /* width: 55%; */
@@ -106,7 +111,7 @@
 .bikeView__mileage {
     padding-top: .9em;
 }
-
+*/
 .poweredByStravaIcon {
     padding-top: .7em;
     padding-left: .5em;
@@ -115,6 +120,16 @@
     height: auto;
 }
 
+
+.componentView {
+    padding: 20px
+}
+
+.search-toggle {
+    margin: 18px 10px 0;
+}
+
+/*
 .componentView__componentSearchSort {
     padding-left: 2.5em;
 }

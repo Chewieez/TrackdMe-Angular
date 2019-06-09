@@ -6,7 +6,9 @@
       <!-- <div *ngIf="comp.active === activeFlag.show">  -->
       <mat-card fxFlex class="componentView__card">
         <mat-card-header class="componentView__header-c">
-          <div mat-card-avatar class="componentView__compIcon"></div>
+          <div mat-card-avatar class="componentView__compIcon">
+            <mat-icon class="componentView__compIcon" svgIcon="{{comp.type.icon}}"></mat-icon>
+          </div>
           <mat-card-title class="compHeader__title">
             <!-- <md-card-avatar> -->
             <!-- <mat-icon class="componentView__compIcon" md-svg-src="{{comp.type.icon}}"></mat-icon> -->

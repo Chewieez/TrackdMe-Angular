@@ -18,13 +18,15 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavComponent } from './components/nav/nav.component';
 import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 import { ComponentListComponent } from './components/component-list/component-list.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     NavComponent,
-    ComponentListComponent
+    ComponentListComponent,
+    SpinnerComponent
   ],
   imports: [
     FormsModule,

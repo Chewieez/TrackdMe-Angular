@@ -35,16 +35,26 @@ p {
     padding: 0;
 }
 
+.text-center {
+    text-align: center;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center {
+    margin: 0 auto;
+}
+
 .deleteBtn:hover, .deleteBtn:hover > md-icon  {
     color: red;
 }
 
 .width50 {
     width: 50%;
-}
-
-.center {
-    margin: 0 auto;
 }
 
 #toast-container {
@@ -83,9 +93,6 @@ footer {
     color: white;
 }
 
-/*                                   */
-/* Animation code for progress meter */
-/*                                   */
 
 .dashboard__content,
 .importBike__content, 
@@ -98,48 +105,6 @@ footer {
 .wishlist__content.ng-hide {
     opacity: 0;
 }
-
-
-.progressSVG.ng-hide {
-    opacity: .3;
-}
-
-.progressSVG {
-    margin: 0 auto;
-    padding: 0;
-    width: 20%;
-    transition: all linear 0.1s;
-}
-
-#svgspin {
-    text-align: center;
-    animation: spin .8s linear infinite; 
-    display: block; 
-    fill: #223344; 
-    height: 150px; 
-    margin: 0 5px 5px 0; 
-    width: 150px;
-    position: relative;
-    margin: 50px auto;
-  }
-
-  @-moz-keyframes spin {
-    100% {
-      -moz-transform: rotate(360deg);
-    }
-}
-  @-webkit-keyframes spin {
-    100% {
-      -webkit-transform: rotate(360deg);
-    }
-}
-  @keyframes spin {
-    100% {
-      -webkit-transform: rotate(360deg); 
-      transform:rotate(360deg);
-    }
-}
-
  
 /*                   */
 /* Add Mileage Modal */
@@ -161,9 +126,6 @@ footer {
     padding-top: .9em;
     padding-left: 3em;
 }
-
-
-
 
 /*               */
 /* Media Queries */

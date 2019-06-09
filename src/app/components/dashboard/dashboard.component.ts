@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   public sort: any;
   public isSortReverse = false;
   public showActiveComponents = true;
+  public progressFlag = true;
 
   constructor(private _auth: AuthService, private _bikesService: BikesService, private _componentService: ComponentService) {
     this._auth.user$.subscribe(user => {
@@ -53,6 +54,7 @@ export class DashboardComponent implements OnInit {
     if (this.user) {
       this._bikesService.getUserBikes(this.user.uid).subscribe(data => {
         this.bikes = data;
+        this.progressFlag = false;
       });
     }
   }
@@ -60,7 +62,7 @@ export class DashboardComponent implements OnInit {
   public getComponents(currentBikeId: string): void {
     if (this.user) {
       this._componentService.getBikeComponents(this.user.uid, currentBikeId).subscribe(data => {
-        this.components = data;
+        this.components = data.filter(comp => comp.active);
         this.filteredComponents = this.components;
         console.log("retrieved components.");
       });
