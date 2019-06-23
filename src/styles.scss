@@ -85,34 +85,49 @@ footer {
     margin-right: .3em;
 }
 
-.tomato {
+.text-tomato {
     color: tomato;
 }
 
-.white {
+.background-tomato {
+    background-color: tomato !important;
+}
+
+.text-white {
     color: white;
 }
 
 
-.dashboard__content,
-.importBike__content, 
-.wishlist__content {
-    transition: all linear .6s;
-}
+// .dashboard__content,
+// .importBike__content, 
+// .wishlist__content {
+//     transition: all linear .6s;
+// }
 
-.dashboard__content.ng-hide, 
-.importBike__content.ng-hide, 
-.wishlist__content.ng-hide {
-    opacity: 0;
+// .dashboard__content.ng-hide, 
+// .importBike__content.ng-hide, 
+// .wishlist__content.ng-hide {
+//     opacity: 0;
+// }
+
+/*                   */
+/* FAB button styles */
+/*                   */
+
+.speed-dial {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    z-index: 100;   
 }
  
 /*                   */
 /* Add Mileage Modal */
 /*                   */
 
-.addMileage__modalContent {
-    padding: 3em;
-}
+// .addMileage__modalContent {
+//     padding: 3em;
+// }
 
 /*                      */
 /* Photo Upload Styling */

@@ -143,11 +143,6 @@
 /* FAB button styles */
 /*                   */
 
-.speed-dial {
-    position: absolute;
-    right: 50px;
-    bottom: 50px;   
-}
 /* 
 .md-fab-bottom-right {
     position:fixed !important;

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
@@ -16,6 +17,7 @@ import { SpinnerComponent } from '../../components/spinner/spinner.component';
     EcoFabSpeedDialModule
   ],
   exports: [
+    FlexLayoutModule,
     MaterialModule,
     EcoFabSpeedDialModule,
     SpinnerComponent

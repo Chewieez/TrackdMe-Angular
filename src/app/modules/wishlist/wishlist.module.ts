@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
-
+import { FormsModule } from '@angular/forms';
 import { WishlistRoutingModule } from './wishlist-routing.module';
-import { MaterialModule } from '../../modules/material/material.module';
+
 import { WishlistListComponent } from './wishlist-list/wishlist-list.component';
 
 @NgModule({
@@ -13,6 +13,7 @@ import { WishlistListComponent } from './wishlist-list/wishlist-list.component';
   imports: [
     CommonModule,
     SharedModule,
+    FormsModule,
     WishlistRoutingModule
   ]
 })

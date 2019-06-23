@@ -10,7 +10,6 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { LayoutModule } from '@angular/cdk/layout';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from './modules/shared/shared.module';
 
 import { AppComponent } from './app.component';
@@ -36,15 +35,14 @@ import { ComponentListComponent } from './components/component-list/component-li
     AngularFireAuthModule,
     SharedModule,
     LayoutModule,
-    FlexLayoutModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'home', redirectTo: 'dashboard' },
+      { path: 'dashboard', component: DashboardComponent },  
       { 
         path: 'wishlist',
         loadChildren: () => import('./modules/wishlist/wishlist.module').then(mod => mod.WishlistModule)
       },
-      { path: 'dashboard', component: DashboardComponent },  
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       // { path: '**', redirectTo: 'dashboard' }
     ])
   ],

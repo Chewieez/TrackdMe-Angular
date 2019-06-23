@@ -17,6 +17,8 @@ export class WishlistListComponent implements OnInit, OnDestroy {
   public wishlist$: Observable<WishlistItem[]>;
   public user: User;
   public wishSearch: string;
+  public sortSelector: any;
+  public sortReverse: boolean = false;
 
   constructor(private _auth: AuthService, private _wishlistService: WishlistService) {
   }
@@ -33,5 +35,9 @@ export class WishlistListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this._unsubscribe.next();
     this._unsubscribe.complete();
+  }
+
+  public sendToAddWish() {
+    console.log("send user to add a wish page or modal");
   }
 }

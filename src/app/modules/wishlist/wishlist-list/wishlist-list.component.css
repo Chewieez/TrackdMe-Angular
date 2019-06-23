@@ -7,3 +7,11 @@
     align-items: center;
     flex-grow: 0;
 }
+
+.wishView__reverseSwitch {
+    margin: 18px 10px 0;
+}
+
+.wish__description {
+    margin-bottom: 10px;
+}
