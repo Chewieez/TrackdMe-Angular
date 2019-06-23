@@ -2,10 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { BikesService } from '../../services/bikes.service';
 import { Bike } from '../../models/bike.model';
-import { mergeMap, switchMap, takeUntil } from 'rxjs/operators';
+import { switchMap, takeUntil } from 'rxjs/operators';
 import { ComponentService } from '../../services/component.service';
 import { BikeComponent } from '../../models/bike-component.model';
-import { Observable, Subscription, Subject } from 'rxjs';
+import { Observable, Subject, EMPTY } from 'rxjs';
+import { User } from 'firebase';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { Observable, Subscription, Subject } from 'rxjs';
 export class DashboardComponent implements OnInit, OnDestroy {
   model: any = {};
   private _unsubscribe: Subject<void> = new Subject();
-  public user: any;
+  public user: User;
   public userBikes$: Observable<Bike[]>;
   public bikes: Bike[];
   public currentBike: Bike;
@@ -33,17 +34,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {
-    // TODO: convert this to use switchMap instead of a nested .subscribe()
-    // this._auth.user$.subscribe(user => {
-    //   this.user = user;
-    //   this.getUserBikes();
-    // });
     this.userBikes$ = this._auth.user$.pipe(
       takeUntil(this._unsubscribe),
       switchMap((user:any) => {
         if (user) {
           this.user = user;
           return this._bikesService.getUserBikes(user.uid);
+        } else {
+          return EMPTY
         }
       })
     )
@@ -70,30 +68,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this._unsubscribe.complete();
   }
 
-  // public getCurrentUser() {
-  //   return this._auth.getAuthState().pipe(first());
-  // }
-
-  // public getUserBikes(): void {
-  //   if (this.user) {
-  //     this._bikesService.getUserBikes(this.user.uid).subscribe(data => {
-  //       this.bikes = data;
-  //       this.progressFlag = false;
-  //     });
-  //   }
-  // }
-
-
   public getComponents(currentBikeId: string): void {
     if (this.user) {
-      this.componentSubscription = this._componentService.getBikeComponents(this.user.uid, currentBikeId)
+      this._componentService.getBikeComponents(this.user.uid, currentBikeId)
         .pipe(
           takeUntil(this._unsubscribe)
         )
         .subscribe(data => {
           this.components = data.filter(comp => comp.active);
           this.filteredComponents = this.components;
-          console.log("retrieved components.");
         });
     }
   }
@@ -117,6 +100,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.filteredComponents = this.components.filter(comp => !comp.active);
     }
   }
+  
+  public sendToImportBike() {
+    console.log("go to strava to import a bike")
+  }
 
   public signin(): void {
     this._auth.login(this.model.userEmail, this.model.userPassword);
@@ -124,21 +111,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   public signup(): void {
       this._auth.signup(this.model.userEmail, this.model.userPassword);
-  }
-
-  public actionX() {
-
-  }
-
-  public action1() {
-    
-  }
-
-  public action2() {
-    
-  }
-
-  public action3() {
-    
   }
 }

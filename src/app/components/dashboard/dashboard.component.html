@@ -1,4 +1,4 @@
-<!-- <p *ngIf="user">Welcome {{ user.email }}!</p>
+<p *ngIf="user">Welcome {{ user.email }}!</p>
 <p *ngIf="user">{{ user.uid }} </p>
 <div *ngIf="!user">
   <label>Email</label>
@@ -7,36 +7,9 @@
   <input type="password" [(ngModel)]="model.userPassword">
   <input type="button" (click)="signin()" value="Sign In">
   <input type="button" (click)="signup()" value="Sign Up">
-</div> -->
+</div>
 
 <div class="dashboard-container" fxLayout="column" fxLayoutAlign="center stretch">
-
-  <!-- ACTION BUTTON - fab button to add bike, import bike, add component -->
-  <!-- <md-fab-speed-dial md-direction="up" class="md-scale md-fab-bottom-right" >
-      <md-fab-trigger>
-          <md-button aria-label="Add..." class="md-fab md-warn">
-              <md-icon md-font-icon="material-icons">add</md-icon>
-              <md-tooltip md-direction="left">Add...</md-tooltip>
-          </md-button>
-      </md-fab-trigger>
-
-      <md-fab-actions>
-          <md-button ng-if="currentBike" class="fabButton md-icon-button" ng-click="sendToAddComponent()">
-              <md-icon class="speedDialButtonIcon" md-svg-src="/images/noun_168563_cc-crankset.svg"></md-icon>
-              <md-tooltip md-direction="left">Add New Component</md-tooltip>
-          </md-button>
-          <md-button aria-label="Add Bike" class="fabButton md-icon-button" ng-click="sendToAddBike()">
-              <md-icon class="md-icon-button speedDialButtonIcon" md-svg-src="/images/noun_1067030_cc.svg"></md-icon>
-              <md-tooltip md-direction="left">Add New Bike</md-tooltip>
-          </md-button>
-
-          <md-button ng-if="currentUserProfile.stravaId" class="fabButton md-icon-button" ng-click="importBikes()">
-              <md-icon class="md-icon-button speedDialButtonIcon" md-svg-src="/images/noun_1067030_cc.svg" style="color: tomato;"></md-icon>
-              <md-tooltip md-direction="left">Import Bike from Strava</md-tooltip>
-          </md-button>
-
-      </md-fab-actions>
-  </md-fab-speed-dial> -->
   <div class="" fxFlex="20%" fxFlexAlign="end">
     <div class="dashboard__refresh">
       <button mat-icon-button (click)="refresh()" class="">
@@ -201,12 +174,12 @@
   <div class="speed-dial">
     <eco-fab-speed-dial direction="left">
       <eco-fab-speed-dial-trigger>
-        <button mat-fab (click)="actionX()" style="background-color: tomato;"><mat-icon>add</mat-icon></button>
+        <button mat-fab style="background-color: tomato;"><mat-icon>add</mat-icon></button>
       </eco-fab-speed-dial-trigger>
       <eco-fab-speed-dial-actions>
         <button mat-mini-fab (click)="sendToAddComponent()" style="background-color: white;"><mat-icon svgIcon="crankset" style="color: black; margin-top: -5px;" matTooltip="Add Component" matTooltipPosition="above"></mat-icon></button>
         <button mat-mini-fab (click)="sendToAddBike()" style="background-color: white;"><mat-icon svgIcon="bicycle" style="color: black; margin-top: -5px;" matTooltip="Add Bike" matTooltipPosition="above"></mat-icon></button>
-        <button mat-mini-fab (click)="action3()" style="background-color: white;"><mat-icon svgIcon="bicycle" style="color: tomato; margin-top: -5px;" matTooltip="Import Bike From Strava" matTooltipPosition="above"></mat-icon></button>
+        <button mat-mini-fab (click)="sendToImportBike()" style="background-color: white;"><mat-icon svgIcon="bicycle" style="color: tomato; margin-top: -5px;" matTooltip="Import Bike From Strava" matTooltipPosition="above"></mat-icon></button>
       </eco-fab-speed-dial-actions>
     </eco-fab-speed-dial>
   </div>
