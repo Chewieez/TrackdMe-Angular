@@ -1,3 +1,7 @@
+.wishlist-container {
+    padding: 20px;
+}
+
 .wishlist-container .mat-expansion-panel-header-description {
     justify-content: end;
     align-items: center;

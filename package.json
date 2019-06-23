@@ -24,6 +24,7 @@
     "@angular/platform-browser": "8.0.0",
     "@angular/platform-browser-dynamic": "8.0.0",
     "@angular/router": "8.0.0",
+    "@ecodev/fab-speed-dial": "^3.1.0",
     "angularfire2": "^5.0.0-rc.11",
     "bootstrap": "^4.3.1",
     "core-js": "^2.4.1",

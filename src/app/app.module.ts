@@ -11,14 +11,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MaterialModule } from './modules/material/material.module';
+import { SharedModule } from './modules/shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavComponent } from './components/nav/nav.component';
 import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 import { ComponentListComponent } from './components/component-list/component-list.component';
-import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     DashboardComponent,
     NavComponent,
     ComponentListComponent,
-    SpinnerComponent
   ],
   imports: [
     FormsModule,
@@ -36,9 +34,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    SharedModule,
     LayoutModule,
     FlexLayoutModule,
-    MaterialModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'home', redirectTo: 'dashboard' },

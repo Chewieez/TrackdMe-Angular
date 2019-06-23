@@ -86,6 +86,10 @@ export class AppComponent {
     iconRegistry.addSvgIcon(
       'powered-by-strava-horiz',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/api_logo_pwrdBy_strava_horiz_light.svg')); 
+
+      iconRegistry.addSvgIcon(
+        'bicycle',
+        sanitizer.bypassSecurityTrustResourceUrl('assets//images/noun_1067030_cc.svg')); 
   }
       
   signin() {

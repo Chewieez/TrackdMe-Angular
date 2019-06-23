@@ -2,7 +2,7 @@
 
     <h1 layout layout-align="center"> Wishlist </h1>
     
-    <!-- <app-spinner *ngIf="progressFlag"></app-spinner> -->
+    <app-spinner *ngIf="inProgressFlag"></app-spinner>
 
     <!-- ACTION BUTTON fab button in lower righ corner used to add a new wishlist item -->
     <!-- <md-button class="md-fab md-warn md-fab-bottom-right" style="position:fixed !important;" aria-label="Add A Wish">
@@ -10,7 +10,7 @@
         <md-icon md-font-icon="material-icons" class="addWishButton" ng-click="createWish()">add</md-icon>
     </md-button> -->
 
-    <div *ngIf="!progressFlag" class="wishlist__content" fxLayout="column">
+    <div class="wishlist__content" fxLayout="column">
 
         <!-- <div ng-if="createMode || editMode" class="wishlist__createForm-c" layout="column" layout-align="center center">
             <h2>New Item:</h2>
@@ -53,7 +53,7 @@
         </div>
         <div class="wishlist__itemList">
           <mat-accordion class="wishAccordionList" multi="true">
-            <mat-expansion-panel *ngFor="let wish of wishlist">
+            <mat-expansion-panel *ngFor="let wish of wishlist$ | async">
               <mat-expansion-panel-header>
                 <mat-panel-title>
                   <span >{{ wish.title }}</span>

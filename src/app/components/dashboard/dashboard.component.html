@@ -44,7 +44,6 @@
       </button>
     </div>
   </div>
-
   <div fxFlex="100%" fxFlexAlign="center">
     <div class="dashboard__header" class="">
       <img src="./assets/images/bikeHeader_dreamstime_71468702_web.png" class="dashboard__headerImage"
@@ -91,15 +90,15 @@
                 <span class="bikeView__bikeHeader"> {{ currentBike.brandName }} {{ currentBike.modelName}}</span>
                 <mat-menu #appMenu="matMenu">
                   <button mat-menu-item (click)="sendToEditBike(currentBike)" aria-label="Edit Bike">
-                    <mat-icon>mode_edit</mat-icon>Edit
+                    <mat-icon matTooltip="Edit Bike Info" [matTooltipShowDelay]="600">mode_edit</mat-icon>Edit
                   </button>
                   <button mat-menu-item (click)="showConfirmBike($event, currentBike)" aria-label="Delete Bike">
-                    <mat-icon>delete</mat-icon>Delete
+                    <mat-icon matTooltip="Delete Bike" [matTooltipShowDelay]="600">delete</mat-icon>Delete
                   </button>
                 </mat-menu>
                 <button mat-icon-button aria-label="Bike menu" class="md-icon-button dotCtrlMenu"
                   [matMenuTriggerFor]="appMenu">
-                  <mat-icon>more_vert</mat-icon>
+                  <mat-icon matTooltip="Options Menu" [matTooltipShowDelay]="600">more_vert</mat-icon>
                 </button>
               </h2>
             </mat-card-title>
@@ -193,9 +192,21 @@
       </div>
     </div>
   </div>
-  <div *ngIf="!components" fxFlex="100%" fxFlexAlign="center">
+  <div *ngIf="currentBike && !components" fxFlex="100%" fxFlexAlign="center">
     <h4>Click the button to start tracking your first component</h4>
     <button mat-raised-button color="primary" (click)="sendToAddComponent()">Add A Component</button>
   </div>
 
   <app-component-list [components]="filteredComponents"></app-component-list>
+  <div class="speed-dial">
+    <eco-fab-speed-dial direction="left">
+      <eco-fab-speed-dial-trigger>
+        <button mat-fab (click)="actionX()" style="background-color: tomato;"><mat-icon>add</mat-icon></button>
+      </eco-fab-speed-dial-trigger>
+      <eco-fab-speed-dial-actions>
+        <button mat-mini-fab (click)="sendToAddComponent()" style="background-color: white;"><mat-icon svgIcon="crankset" style="color: black; margin-top: -5px;" matTooltip="Add Component" matTooltipPosition="above"></mat-icon></button>
+        <button mat-mini-fab (click)="sendToAddBike()" style="background-color: white;"><mat-icon svgIcon="bicycle" style="color: black; margin-top: -5px;" matTooltip="Add Bike" matTooltipPosition="above"></mat-icon></button>
+        <button mat-mini-fab (click)="action3()" style="background-color: white;"><mat-icon svgIcon="bicycle" style="color: tomato; margin-top: -5px;" matTooltip="Import Bike From Strava" matTooltipPosition="above"></mat-icon></button>
+      </eco-fab-speed-dial-actions>
+    </eco-fab-speed-dial>
+  </div>
