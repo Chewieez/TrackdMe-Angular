@@ -24,6 +24,9 @@
   overflow: scroll;
 } 
 
+.site-content-container {
+  padding: 0 20px;
+}
 
 /* 
 .nav__profileName {

@@ -3,15 +3,14 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)" (opened)="isNavOpen = true" (closed)="isNavOpen = false">
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="/dashboard">
+      <a mat-list-item routerLink="/dashboard">
         <mat-icon class="md-primary">dashboard</mat-icon>
         Dashboard
       </a>
-      <a mat-list-item href="/wishlist">
+      <a mat-list-item routerLink="/wishlist">
         <mat-icon>list</mat-icon>
         Wishlist
       </a>
-
       <button mat-button [matMenuTriggerFor]="menu">
         <mat-icon class="nav__defaultProfileImage">account_circle</mat-icon>
           <!-- <img ng-src="{{currentUserProfile.image}}" class="nav__profileImage" ng-show="currentUserProfile.image" /> -->
@@ -38,8 +37,6 @@
       </button>
       <h5 class="nav__appName">Trackd.Me</h5>
     </mat-toolbar>
-
-    <!-- <app-dashboard></app-dashboard> -->
     <div class="site-content-container">
       <router-outlet></router-outlet>
     </div>

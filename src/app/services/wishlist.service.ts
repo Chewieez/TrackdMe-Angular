@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { WishlistItem } from '../models/wishlist-item.model';
+import { WishlistItem } from '../modules/wishlist/models/wishlist-item.model';
 import { map } from 'rxjs/operators';
 
 const API_URL = "https://bike-component-log.firebaseio.com/wishes";

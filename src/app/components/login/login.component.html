@@ -1,0 +1,38 @@
+<div class="login-container" fxLayout="column" fxLayoutAlign="center center">
+  <mat-card class="login-card">
+    <mat-card-title fxLayout="row" fxLayoutAlign="space-between">
+      <h1 class="login__header">
+        Login
+      </h1>
+      <button mat-icon-button fxFlexAlign="end" class="loginCancelBtn">
+        <mat-icon (click)="cancel()">clear</mat-icon>
+      </button>
+    </mat-card-title>
+    <mat-card-content fxLayout="column" fxLayoutAlign="center stretch">
+      <form>
+        <mat-form-field fxFlex="100%">
+          <input matInput class="form-control" name="email" [(ngModel)]="emailAddress" required placeholder="Email" #email="ngModel" />
+          <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="email.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput class="form-control" name="password" [(ngModel)]="password" required placeholder="Password" #passwordControl="ngModel" />
+        </mat-form-field>
+        <mat-error *ngIf="passwordControl.hasError('password') && !passwordControl.hasError('required')">
+          Please enter a valid password address
+        </mat-error>
+        <mat-error *ngIf="passwordControl.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </form>
+    </mat-card-content>
+    <mat-card-actions fxLayout="row" fxLayoutAlign="end">
+      <button mat-raised-button color="primary" (click)="logMeIn()">Login</button>
+      <button mat-raised-button color="md-warn" (click)="registerUser()">Register</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

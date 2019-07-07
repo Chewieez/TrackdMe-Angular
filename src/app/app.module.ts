@@ -17,6 +17,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavComponent } from './components/nav/nav.component';
 import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 import { ComponentListComponent } from './components/component-list/component-list.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ComponentListComponent } from './components/component-list/component-li
     DashboardComponent,
     NavComponent,
     ComponentListComponent,
+    LoginComponent,
   ],
   imports: [
     FormsModule,
@@ -42,13 +44,19 @@ import { ComponentListComponent } from './components/component-list/component-li
         path: 'wishlist',
         loadChildren: () => import('./modules/wishlist/wishlist.module').then(mod => mod.WishlistModule)
       },
+      { path: 'login', component: LoginComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      // { path: '**', redirectTo: 'dashboard' }
+      // TODO: create a not-found component to send this route to
+      // { path: '**', component: NotFoundComponent }
     ])
   ],
   providers: [
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
+  entryComponents: [
+    LoginComponent,
+    DashboardComponent
   ],
   bootstrap: [AppComponent]
 })

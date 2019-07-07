@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WishlistService } from '../../../services/wishlist.service';
-import { WishlistItem } from '../../../models/wishlist-item.model';
+import { WishlistItem } from '../models/wishlist-item.model';
 import { AuthService } from '../../../services/auth.service';
 import { User } from 'firebase';
 import { takeUntil, switchMap, tap, finalize } from 'rxjs/operators';
