@@ -112,4 +112,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public signup(): void {
       this._auth.signup(this.model.userEmail, this.model.userPassword);
   }
+
+  public refresh() {
+    // TODO: add logic to refresh view
+  }
 }

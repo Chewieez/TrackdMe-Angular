@@ -40,4 +40,8 @@ export class WishlistListComponent implements OnInit, OnDestroy {
   public sendToAddWish() {
     console.log("send user to add a wish page or modal");
   }
+
+  public setSortOrder(sortSelector: any) {
+    // TODO: finish this function
+  }
 }
