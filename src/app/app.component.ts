@@ -32,7 +32,7 @@ export class AppComponent {
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/component-icons/noun_117972_cc-single-pedal.svg'));
 
     iconRegistry.addSvgIcon(
-      'bottom-bracket',
+      'bottomBracket',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/component-icons/noun_117974_cc-bot-bracket.svg'));
 
     iconRegistry.addSvgIcon(
@@ -44,11 +44,11 @@ export class AppComponent {
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/component-icons/noun_549552_cc-tire-frontside.svg'));
 
     iconRegistry.addSvgIcon(
-      'front-der',
+      'frontDer',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/component-icons/noun_784211_cc-front-der.svg'));
 
     iconRegistry.addSvgIcon(
-      'rear-der',
+      'rearDer',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/component-icons/noun_784214_cc-rear-der2.svg'));
 
     iconRegistry.addSvgIcon(
@@ -60,7 +60,7 @@ export class AppComponent {
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/component-icons/noun_894071_cc-saddle2.svg'));
 
     iconRegistry.addSvgIcon(
-      'brake-lever',
+      'brakeLever',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/component-icons/noun_894083_cc-brake-lever.svg'));
 
     iconRegistry.addSvgIcon(
@@ -72,7 +72,7 @@ export class AppComponent {
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/component-icons/noun_894117_cc-wheel.svg'));
 
     iconRegistry.addSvgIcon(
-      'susp-fork',
+      'suspFork',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/component-icons/noun_1034214_cc-sus-fork.svg'));
 
     iconRegistry.addSvgIcon(
@@ -80,7 +80,7 @@ export class AppComponent {
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/component-icons/noun_1337274_cc-seatpost.svg'));
 
     iconRegistry.addSvgIcon(
-      'gear-pencil',
+      'gearPencil',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/noun_1035258_cc-gearPencilIcon.svg')); 
       
     iconRegistry.addSvgIcon(
