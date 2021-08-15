@@ -30,11 +30,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public showActiveComponents = true;
   public progressFlag = true;
 
-  constructor(private _auth: AuthService, private _bikesService: BikesService, private _componentService: ComponentService) {
+  constructor(private _authService: AuthService, private _bikesService: BikesService, private _componentService: ComponentService) {
   }
   
   ngOnInit() {
-    this.userBikes$ = this._auth.user$.pipe(
+    this.userBikes$ = this._authService.user$.pipe(
       takeUntil(this._unsubscribe),
       switchMap((user:any) => {
         if (user) {
@@ -106,11 +106,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   public signin(): void {
-    this._auth.login(this.model.userEmail, this.model.userPassword);
+    this._authService.login(this.model.userEmail, this.model.userPassword);
   }
 
   public signup(): void {
-      this._auth.signup(this.model.userEmail, this.model.userPassword);
+      this._authService.signup(this.model.userEmail, this.model.userPassword);
   }
 
   public refresh() {

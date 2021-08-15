@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { BikeComponent } from '../models/bike-component.model';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 const API_URL = "https://bike-component-log.firebaseio.com/components";
 const CACHE_SIZE = 1; // the number of elements that are cached and replayed for each subscriber
@@ -15,8 +16,11 @@ export class ComponentService {
   public user: any;
   public componentsCache$: Observable<Array<BikeComponent>>;
   public currentBikeId: string;
+  public db: AngularFireDatabase;
 
-  constructor(private _auth: AuthService, private _http: HttpClient) { }
+  constructor(private _auth: AuthService, private _http: HttpClient, db: AngularFireDatabase) {
+    this.db = db;
+   }
 
 //   public addComponent(newComponent) {
 //   return firebase.auth().currentUser.getIdToken(true).then(idToken => {
@@ -71,14 +75,19 @@ export class ComponentService {
   }
 
 private _requestBikeComponents(fbUID, currentBikeId) {
-  return this._http.get<BikeComponent[]>(`${API_URL}.json?orderBy="userId"&equalTo="${fbUID}"`)
-  .pipe(
-    map(res => {
-      const components = res.valueOf();
-      return Object.keys(components)
-      .map(key => components[key])
-      .filter(component => component.bikeFbId === currentBikeId);
-    }));
+  // return this._http.get<BikeComponent[]>(`${API_URL}.json?orderBy="userId"&equalTo="${fbUID}"`)
+  return this.db.list('/components', ref => ref.orderByChild('userId').equalTo(fbUID))
+    .valueChanges()
+    .pipe(
+      map(res => {
+        if (res) {
+          // reshape the returned object
+          const components = res.valueOf();
+          return Object.keys(components)
+            .map(key => components[key])
+            .filter(component => component.bikeFbId === currentBikeId);
+        }
+      }));
 }
 
 
