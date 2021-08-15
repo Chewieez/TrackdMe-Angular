@@ -36,15 +36,14 @@ import { ComponentListComponent } from './components/component-list/component-li
     SharedModule,
     LayoutModule,
     RouterModule.forRoot([
-      { path: 'home', redirectTo: 'dashboard' },
-      { path: 'dashboard', component: DashboardComponent },  
-      { 
+    { path: 'home', redirectTo: 'dashboard' },
+    { path: 'dashboard', component: DashboardComponent },
+    {
         path: 'wishlist',
         loadChildren: () => import('./modules/wishlist/wishlist.module').then(mod => mod.WishlistModule)
-      },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      // { path: '**', redirectTo: 'dashboard' }
-    ])
+    },
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+], { relativeLinkResolution: 'legacy' })
   ],
   providers: [
     AuthService,
