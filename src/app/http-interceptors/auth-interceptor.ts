@@ -1,5 +1,5 @@
 import { AuthService } from '../services/auth.service';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { HttpHandler, HttpInterceptor, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
@@ -7,11 +7,11 @@ import { Observable, from } from 'rxjs';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
  
-    authState: any;
-    authToken: any;
+  public authState: any;
+  public authToken: any;
     
   constructor(private afAuth: AngularFireAuth) {
-    this.afAuth.auth.onAuthStateChanged(user => {
+    this.afAuth.onAuthStateChanged(user => {
       if (user) {
         this.authState = user;
 
@@ -34,7 +34,7 @@ export class AuthInterceptor implements HttpInterceptor {
       // cloned headers, updated with the authorization.
       let authToken = "";
 
-      this.afAuth.auth.onAuthStateChanged(user => {
+      this.afAuth.onAuthStateChanged(user => {
         if (user) {
           user.getIdToken(false).then((token => {
               authToken = token;

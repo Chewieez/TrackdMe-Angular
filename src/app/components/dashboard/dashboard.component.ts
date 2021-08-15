@@ -6,7 +6,7 @@ import { switchMap, takeUntil } from 'rxjs/operators';
 import { ComponentService } from '../../services/component.service';
 import { BikeComponent } from '../../models/bike-component.model';
 import { Observable, Subject, EMPTY } from 'rxjs';
-import { User } from 'firebase';
+import firebase from 'firebase';
 
 
 @Component({
@@ -18,7 +18,7 @@ import { User } from 'firebase';
 export class DashboardComponent implements OnInit, OnDestroy {
   model: any = {};
   private _unsubscribe: Subject<void> = new Subject();
-  public user: User;
+  public user: firebase.User;
   public userBikes$: Observable<Bike[]>;
   public bikes: Bike[];
   public currentBike: Bike;

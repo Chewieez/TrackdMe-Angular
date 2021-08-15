@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WishlistService } from '../../../services/wishlist.service';
 import { WishlistItem } from '../../../models/wishlist-item.model';
 import { AuthService } from '../../../services/auth.service';
-import { User } from 'firebase';
+import firebase from 'firebase';
 import { takeUntil, switchMap, tap, finalize } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 
@@ -15,7 +15,7 @@ export class WishlistListComponent implements OnInit, OnDestroy {
   private _unsubscribe: Subject<void> = new Subject();
   public inProgressFlag: boolean = true;
   public wishlist$: Observable<WishlistItem[]>;
-  public user: User;
+  public user: firebase.User;
   public wishSearch: string;
   public sortSelector: any;
   public sortReverse: boolean = false;

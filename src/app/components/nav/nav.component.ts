@@ -24,10 +24,10 @@ export class NavComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    public auth: AuthService
+    public authService: AuthService
   ) {}
 
   logout() {
-    this.auth.logout();
+    this.authService.logout();
   }
 }

@@ -14,7 +14,7 @@ export class AppComponent {
 
   model: any = {};
 
-  constructor(public auth: AuthService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) { 
+  constructor(public authService: AuthService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) { 
     iconRegistry.addSvgIcon(
       'crankset',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/component-icons/noun_168563_cc-crankset2.svg'));
@@ -93,11 +93,11 @@ export class AppComponent {
   }
       
   signin() {
-    this.auth.login(this.model.userEmail, this.model.userPassword);
+    this.authService.login(this.model.userEmail, this.model.userPassword);
   }
 
   signup() {
-      this.auth.signup(this.model.userEmail, this.model.userPassword);
+      this.authService.signup(this.model.userEmail, this.model.userPassword);
   }
         
 }
