@@ -92,12 +92,12 @@ export class AppComponent {
         sanitizer.bypassSecurityTrustResourceUrl('assets//images/noun_1067030_cc.svg')); 
   }
       
-  signin() {
+  public signin() {
     this.authService.login(this.model.userEmail, this.model.userPassword);
   }
 
-  signup() {
-      this.authService.signup(this.model.userEmail, this.model.userPassword);
+  public signup() {
+    this.authService.signup(this.model.userEmail, this.model.userPassword);
   }
-        
+    
 }

@@ -15,9 +15,9 @@ export class AuthInterceptor implements HttpInterceptor {
       if (user) {
         this.authState = user;
 
-        user.getIdToken(true).then((authToken => {
-            this.authToken = authToken;
-        }));
+        user.getIdToken(true).then(authToken => {
+          this.authToken = authToken;
+        });
       }
     });
   }

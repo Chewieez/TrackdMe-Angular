@@ -1,6 +1,5 @@
 <div class="wishlist-container">
     <h1> Wishlist </h1>
-    <app-spinner *ngIf="inProgressFlag"></app-spinner>
     <div class="speed-dial">
       <eco-fab-speed-dial direction="left">
         <eco-fab-speed-dial-trigger>
@@ -53,6 +52,7 @@
         </div>
         <div class="wishlist__itemList">
           <mat-accordion class="wishAccordionList" multi="true">
+            <app-spinner *ngIf="inProgressFlag"></app-spinner>
             <mat-expansion-panel *ngFor="let wish of wishlist$ | async">
               <mat-expansion-panel-header>
                 <mat-panel-title>

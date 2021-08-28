@@ -9,17 +9,16 @@ export class AuthService {
   public authState$: Observable<any>;
   public user$: Observable<any>;
 
-
   constructor(public firebaseAuth: AngularFireAuth) {
     this.authState$ = firebaseAuth.authState;
     this.user$ = firebaseAuth.authState;
   }
 
-  getAuthState() {
+  public getAuthState() {
     return this.authState$;
   }
 
-  signup(email: string, password: string) {
+  public signup(email: string, password: string) {
     this.firebaseAuth
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
@@ -30,7 +29,7 @@ export class AuthService {
       });
   }
 
-  login(email: string, password: string) {
+  public login(email: string, password: string) {
     this.firebaseAuth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
@@ -41,7 +40,7 @@ export class AuthService {
       });
   }
 
-  logout() {
+  public logout() {
     this.firebaseAuth
       .signOut()
       .then(() => console.log("Successfully logged out"))
