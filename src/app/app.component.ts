@@ -84,7 +84,7 @@ export class AppComponent {
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/noun_1035258_cc-gearPencilIcon.svg')); 
       
     iconRegistry.addSvgIcon(
-      'powered-by-strava-horiz',
+      'poweredByStravaHoriz',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/api_logo_pwrdBy_strava_horiz_light.svg')); 
 
       iconRegistry.addSvgIcon(

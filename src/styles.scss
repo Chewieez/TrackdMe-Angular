@@ -2,12 +2,12 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "./app/sass-files/variables";
 /* Bootstrap imports */
-@import "~bootstrap/scss/_functions";
-@import "~bootstrap/scss/_variables";
-@import "~bootstrap/scss/_mixins";
+// @import "~bootstrap/scss/_functions";
+// @import "~bootstrap/scss/_variables";
+// @import "~bootstrap/scss/_mixins";
 /* Resets CSS styles */
-@import "~bootstrap/scss/reboot";
-@import "~bootstrap/scss/grid"; 
+// @import "~bootstrap/scss/reboot";   
+// @import "~bootstrap/scss/grid"; 
 @import "./app/sass-files/reset";
 
 
@@ -37,6 +37,10 @@ p {
 
 .text-center {
     text-align: center;
+}
+
+.text-right {
+    text-align: right;
 }
 
 .center-block {
@@ -97,6 +101,9 @@ footer {
     color: white;
 }
 
+.bikeView div.mat-card-header-text {
+    flex-grow: 1;
+}
 
 // .dashboard__content,
 // .importBike__content, 

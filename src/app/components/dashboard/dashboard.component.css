@@ -20,13 +20,30 @@
     /* height: 55%; */
     /* width: 55%; */
     /* transition: max-height linear .4s; */
+    width: 100%;
     max-width: 650px;
     max-height: 352px;
 }
 
 .dashboard__refresh {
     margin-top: 10px;
+    margin-right: 10px;
 }
+
+.bikeView__mileage {
+    font-size: 1.1em;
+}
+
+.bikeView__icon {
+    margin-top: -10px;
+    height: 45px;
+    width: 45px;
+}
+
+
+/* div.mat-card-header-text {
+    flex-grow: 1;
+} */
 
 /* 
 .dashboard__header.ng-hide {
@@ -116,7 +133,7 @@
     padding-top: .7em;
     padding-left: .5em;
     padding-right: .4em;
-    width: 150px;
+    width: 125px;
     height: auto;
 }
 
