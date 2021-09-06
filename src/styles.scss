@@ -1,16 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import "./app/sass-files/variables";
-/* Bootstrap imports */
-// @import "~bootstrap/scss/_functions";
-// @import "~bootstrap/scss/_variables";
-// @import "~bootstrap/scss/_mixins";
-/* Resets CSS styles */
-// @import "~bootstrap/scss/reboot";   
-// @import "~bootstrap/scss/grid"; 
-@import "./app/sass-files/reset";
-
-
 /*                  */
 /* Site wide styles */
 /*                  */
@@ -21,7 +8,8 @@ body {
 }
 
 h4, h5, h6 {
-    margin: .2em;
+    margin-top: .2em;
+    margin-bottom: .2em;
     padding: 0;
     font-weight: 300;
 }
@@ -31,8 +19,16 @@ h1, h2, h3 {
 }
 
 p {
-    margin: .2em;
+    margin-top: .2em;
+    margin-bottom: .2em;
     padding: 0;
+}
+
+
+.btn-sm {
+    padding: 0 7.5px !important;
+    line-height: 24px !important;
+    font-size: .9em !important;
 }
 
 .text-center {
@@ -103,6 +99,40 @@ footer {
 
 .bikeView div.mat-card-header-text {
     flex-grow: 1;
+    margin: 0 0 0 15px;
+}
+
+.compView div.mat-card-header-text {
+    flex-grow: 1;
+    margin: 0 0 0 15px;
+}
+
+.card-edit-btn-container {
+    position: relative;
+    top: -10px;
+    right: -15px;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+    padding: 0;
+    box-shadow: none;
+    border-bottom: 1px solid  grey;
+    border-radius: 0px !important;
+}
+
+.mat-accordion .mat-expansion-panel:last-of-type {
+    border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+
+mat-expansion-panel-header.mat-expansion-panel-header {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+mat-accordion.mat-accordion .mat-expansion-panel-body {
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 // .dashboard__content,
@@ -148,15 +178,3 @@ footer {
     padding-top: .9em;
     padding-left: 3em;
 }
-
-/*               */
-/* Media Queries */
-/*               */
-/* @media screen and (max-width: 700px) {
-    .bikeView__details,
-    .componentView__details,
-    .dashboard__headerImage,
-    .bikeView__dropdown {
-        width: 90%;
-    }
-} */

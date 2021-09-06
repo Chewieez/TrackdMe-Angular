@@ -21,6 +21,7 @@
               "src/favicon.ico"
             ],
             "styles": [
+              "src/app/sass-files/_bundle.scss",
               "src/styles.scss"
             ],
             "scripts": [],

@@ -18,9 +18,11 @@
 }
 
 .site-content-container {
-  margin-top: 56px;
+  margin-top: 65px;
   height: 100vh;
   max-height: 100vh;
+  padding-left: 15px;
+  padding-right: 15px;
   overflow: scroll;
 } 
 

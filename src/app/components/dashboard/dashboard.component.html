@@ -18,7 +18,7 @@
       </div>
     </div>
   </div> 
-  <div fxLayout fxLayoutAlign="center center">
+  <div fxLayout="row" fxLayoutAlign="center center">
     <div class="dashboard__header">
       <img src="./assets/images/bikeHeader_dreamstime_71468702_web.png" class="dashboard__headerImage" alt="BikeTracker Icon" />
     </div>
@@ -26,8 +26,8 @@
   <app-spinner *ngIf="progressFlag"></app-spinner>
   <div class="dashboard__content">
     <div class="bikeView">
-      <div ng-show="bikes.length !== 0" class="bikeView__dropdown" fxLayout="row wrap" fxLayoutAlign="center stretch">
-        <mat-form-field class="bikeView__dropdown-ic" fxFlex.lg="500px" fxFlex.xs="90%">
+      <div ng-show="bikes.length !== 0" class="bikeView__dropdown" fxLayout="row" fxLayoutAlign="center stretch">
+        <mat-form-field class="bikeView__dropdown-ic" fxFlex="500px" fxFlex.lt-sm="100%">
           <mat-select [(ngModel)]="currentBike" (ngModelChange)="getComponents(currentBike.fbId)" id="currentBikeSelector" placeholder="Choose a Bike" aria-placeholder="Choose a Bike">
             <mat-optgroup label="Bikes">
               <mat-option [value]="bike" *ngFor="let bike of bikes"> {{ bike.brandName }} {{ bike.modelName }}
@@ -52,26 +52,26 @@
         <md-button ng-if="currentUserProfile.stravaId" class="md-raised md-warn" ng-click="importBikes()">Import Bike from Strava</md-button>
       </div>
       -->
-      <div fxLayout="row wrap" fxLayoutAlign="center stretch" style="margin-top: 15px;">
-        <div fxFlex="0 1 65%" fxFlex.xs="90%">
-          <mat-card *ngIf="currentBike" class="bikeView__details" id="currentBikeDetails" fxFlex fxFlexAlign="center" fxLayout="column" fxLayoutAlign="space-between stretch">
+      <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center stretch" style="margin-top: 15px;">
+        <div fxFlex="0 1 65%" fxFlex.lt-sm="100%">
+          <mat-card *ngIf="currentBike" class="bikeView__details" id="currentBikeDetails">
             <mat-card-header>
               <div mat-card-avatar>
-                <mat-icon svgIcon="bicycle" style="color: black;" class="bikeView__icon"></mat-icon>
+                <mat-icon svgIcon="bicycle" class="bikeView__icon"></mat-icon>
               </div>
               <mat-card-title>
-                <div fxFlex class="bikeView__bikeHeader"> {{ currentBike.brandName }} {{ currentBike.modelName}}</div>
-                <div fxFlex="10">
-                  <mat-menu #appMenu="matMenu">
-                    <button mat-menu-item (click)="sendToEditBike(currentBike)" aria-label="Edit Bike">
-                      <mat-icon matTooltip="Edit Bike Info" [matTooltipShowDelay]="600">mode_edit</mat-icon>Edit
+                <div fxFlex>{{ currentBike.brandName }} {{ currentBike.modelName}}</div>
+                <div class="card-edit-btn-container" fxFlex="40px">
+                  <mat-menu #bikeDetailsMenu="matMenu">
+                    <button mat-menu-item (click)="sendToEditBike(currentBike)" matTooltip="Edit Bike Info" aria-label="Edit Bike">
+                      <mat-icon>mode_edit</mat-icon>Edit
                     </button>
-                    <button mat-menu-item (click)="showConfirmBike($event, currentBike)" aria-label="Delete Bike">
-                      <mat-icon matTooltip="Delete Bike" [matTooltipShowDelay]="600">delete</mat-icon>Delete
+                    <button mat-menu-item (click)="showConfirmBike($event, currentBike)" matTooltip="Delete Bike" aria-label="Delete Bike">
+                      <mat-icon>delete</mat-icon>Delete
                     </button>
                   </mat-menu>
-                  <button mat-icon-button aria-label="Bike menu" class="md-icon-button dotCtrlMenu" [matMenuTriggerFor]="appMenu">
-                    <mat-icon matTooltip="Options Menu" [matTooltipShowDelay]="600">more_vert</mat-icon>
+                  <button mat-icon-button matTooltip="Options Menu" aria-label="Bike menu" [matMenuTriggerFor]="bikeDetailsMenu">
+                    <mat-icon>more_vert</mat-icon>
                   </button>
                 </div>
               </mat-card-title>
@@ -80,7 +80,7 @@
               <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                 <div class="bikeView__mileage" fxFlex="1 1 0">Mileage: {{currentBike.mileage}} miles</div>
                 <div *ngIf="!(currentBike)?.stravaBikeId">
-                  <button mat-button class="mat-stroked-button mat-accent add-mileage-btn" (click)="addMileageModal()">Add Mileage</button>
+                  <button mat-stroked-button color="accent" class="add-mileage-btn" (click)="addMileageModal()">Add Mileage</button>
                 </div>
                 <div>
                   <mat-icon *ngIf="currentBike.stravaBikeId" svgIcon="poweredByStravaHoriz" class="poweredByStravaIcon" matTooltip="Mileage synced with Strava"
@@ -89,7 +89,7 @@
               </div>
               <br />
               <br />
-              <mat-accordion class="vAccordion--default bikeView__extraDetails">
+              <mat-accordion class="bikeView__extraDetails">
                 <mat-expansion-panel>
                   <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -97,6 +97,7 @@
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <div>
+                    <!-- TODO: Refactor to use dt/dd -->
                     <span *ngIf="currentBike.serial">
                       <h5>Serial Number:</h5>
                       <p>{{currentBike.serial}}</p>
@@ -115,7 +116,7 @@
                   <mat-expansion-panel-header>
                     Images
                   </mat-expansion-panel-header>
-                  <div class="row justify-space-around">
+                  <div fxLayout="row wrap" fxLayoutGap="20px grid" fxLayout.lt-sm="column" fxLayoutAlign="space-around center">
                     <div *ngFor="let image of currentBike.images" class="bikeImages__bikeImageWhiteBox">
                       <img [src]="image" class="bikeImages__bikeImage" (click)="displayPhoto($event)" />
                     </div>
@@ -130,13 +131,13 @@
   </div>
   <!-- End of Bike View Section -->
 
-  <mat-divider *ngIf="currentBike"></mat-divider>
+  <mat-divider *ngIf="currentBike" style="margin: 25px 0"></mat-divider>
 
   <!-- Component Section -->
-  <div *ngIf="components" class="componentView" fxFlex="100%">
-    <div class="componentView__componentSearchSort" fxLayout="row wrap" fxLayoutAlign="space-around center">
-      <div class="componentSearchSort__componentSearch" fxFlex fxFlexFill>
-        <mat-form-field class="componentSearch__input" fxFlex="1 1 300px" fxFlex.sm="90%">
+  <div *ngIf="components" class="compView" fxFlex="100%">
+    <div class="compView__componentSearchSort" fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="flex-start center" fxLayoutAlign.lt-sm="space-between center">
+      <div class="componentSearchSort__componentSearch" fxFlex.lt-sm="100%">
+        <mat-form-field class="componentSearch__input" fxFlex="300px" fxFlex.lt-sm="100%">
           <input matInput type="search" placeholder="Search Components" [(ngModel)]="componentSearch"
             id="searchComponentInput" aria-label="Search Bike Components" />
           <button *ngIf="componentSearch" matSuffix mat-icon-button aria-label="Clear" (click)="componentSearch=''">
@@ -144,33 +145,27 @@
           </button>
         </mat-form-field>
       </div>
-      <div class="componentSearchSort__componentSortBy" fxFlex fxFlexFill>
-        <mat-form-field class="componentSearchSort__sortDropDown" fxFlex="1 1 300px" fxFlex.sm="90%">
-          <!-- in AngularJS I used a "trackBy" property on this select. Is there an equivalent in Angular 2+? YES there is -->
+      <div class="componentSearchSort__componentSortBy" fxFlex.lt-sm="50%">
+        <mat-form-field class="componentSearchSort__sortDropDown" fxFlex="300px" fxFlex.lt-sm="100%">
+          <!-- TODO: incorporate 'TrackBy' -->
           <mat-select [(ngModel)]="sortSelector" (ngModelChange)="setSortOrder(sortSelector)"
             placeholder="Sort Components" aria-label="Sort Components By">
             <mat-option [value]="sort" *ngFor="let sort of sortOrderArray">{{ sort.title }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="toggles" fxFlex fxFlexFill fxLayout="row" fxLayoutAlign="end center" fxLayoutAlign.sm="start center">
-        <div class="search-toggle" fxFlex fxFlexAlign="start">
-          <mat-slide-toggle [(ngModel)]="isSortReverse" id="sortReverseBox" aria-label="Reverse Results"
-          class="componentSearchSort__reverseSwitch">Reverse</mat-slide-toggle>
-        </div>
-        <div class="search-toggle" fxFlex fxFlexAlign="start">
-          <mat-slide-toggle (change)="filterComponents(showActiveComponents)" [(ngModel)]="showActiveComponents"
+      <div class="search-toggle">
+        <mat-slide-toggle (change)="filterComponents(showActiveComponents)" [(ngModel)]="showActiveComponents"
           aria-label="Active Components Only" class="componentSearchSort__activeSwitch">Installed</mat-slide-toggle>
-        </div>
       </div>
     </div>
+    <app-component-list [components]="filteredComponents"></app-component-list>
   </div>
   <div *ngIf="currentBike && !components" fxFlex="100%" fxFlexAlign="center">
     <h4>Click the button to start tracking your first component</h4>
     <button mat-raised-button color="primary" (click)="sendToAddComponent()">Add A Component</button>
   </div>
 
-  <app-component-list [components]="filteredComponents"></app-component-list>
   <div class="speed-dial">
     <eco-fab-speed-dial direction="left">
       <eco-fab-speed-dial-trigger>
@@ -183,3 +178,4 @@
       </eco-fab-speed-dial-actions>
     </eco-fab-speed-dial>
   </div>
+</div>

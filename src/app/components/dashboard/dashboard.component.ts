@@ -48,6 +48,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   
     this.userBikes$.subscribe(data => {
       this.bikes = data;
+
+      // TODO: remove this hard coding -- using it to speed up UI work
+      this.currentBike = this.bikes[1];
+      this.getComponents(this.currentBike.fbId)
+
       this.progressFlag = false;
     });
     /**

@@ -2,12 +2,6 @@
 /* Dashboard Styles */
 /*                  */
 
-.mat-expansion-panel:not([class*=mat-elevation-z]) {
-  padding: 0;
-  box-shadow: none;
-  border-bottom: 1px solid  grey
-}
-
 .dashboard__content {
     padding-bottom: 20px;
 }
@@ -136,57 +130,3 @@
     width: 125px;
     height: auto;
 }
-
-
-.componentView {
-    padding: 20px
-}
-
-.search-toggle {
-    margin: 18px 10px 0;
-}
-
-/*
-.componentView__componentSearchSort {
-    padding-left: 2.5em;
-}
-
-.componentSearch__input {
-    width: 100%;
-}
-*/
-
-/*                   */
-/* FAB button styles */
-/*                   */
-
-/* 
-.md-fab-bottom-right {
-    position:fixed !important;
-    margin-bottom: 2em;
-}
-
-.speedDialButtonText {
-    padding: 0;
-    margin: 0;
-    font-size: .8em;
-}
-
-.fabButton {
-    width: 75% !important;
-    height: 75% !important;
-    background-color: white;
-    border-radius: 50%;
-    padding-bottom: 4px !important;
-}
-
-.fabButton:hover {
-    background-color: rgba(197, 197, 197, 0.774) !important;
-}
-
-.speedDialButtonIcon {
-    width: 50px; 
-    height: 45px;
-    margin-right: 2px;
-} */
-

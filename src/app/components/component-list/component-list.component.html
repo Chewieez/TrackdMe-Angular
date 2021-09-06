@@ -1,97 +1,95 @@
 <!-- <div *ngFor="let comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse.setting"> -->
-<div class="component-list-container">
-  <div fxLayout="row wrap" fxLayoutGap="20px grid" fxLayout.lt-sm="column" fxLayoutAlign="space-around center">
-    <div *ngFor="let comp of components" fxFlex="0" fxFlex.lt-sm="100%">
-      <!-- <div *ngIf="comp.active === activeFlag.show">  -->
-      <mat-card fxFlex class="componentView__card">
-        <mat-card-header class="componentView__header-c">
-          <div mat-card-avatar class="componentView__compIcon">
-            <mat-icon class="componentView__compIcon" svgIcon="{{comp.type.icon.includes('image') ? 'crankset' : comp.type.icon}}"></mat-icon>
+<div class="component-list-container" style="margin-top: 20px;">
+  <div fxLayout="row wrap" fxLayoutGap="20px grid" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+    <div *ngFor="let comp of components" fxFlex="0 1 33.3%" fxFlex.lt-md="50%" fxFlex.lt-sm="100%">
+      <mat-card class="compView__card">
+        <mat-card-header>
+          <div mat-card-avatar>
+            <mat-icon class="compView__icon" svgIcon="{{comp.type.icon.includes('image') ? 'crankset' : comp.type.icon}}"></mat-icon>
           </div>
-          <mat-card-title class="compHeader__title">
-            <!-- <md-card-avatar> -->
-            <!-- <mat-icon class="componentView__compIcon" md-svg-src="{{comp.type.icon}}"></mat-icon> -->
-            <!-- </md-card-avatar> -->
-            <h3 class="">
-              {{ comp.type.name }}
-            </h3>
-            <!-- <span flex></span> -->
-            <mat-menu #componentMenu="matMenu">
-              <button mat-menu-item (click)="sendToEditComponent(comp)" aria-label="Edit Component">
+          <div class="card-edit-btn-container" fxFlex="40px">
+            <mat-menu #componentDetailsMenu="matMenu">
+              <button mat-menu-item matTooltip="Edit Component Info" (click)="sendToEditComponent(comp)" aria-label="Edit Component">
                 <mat-icon>mode_edit</mat-icon>Edit
               </button>
-              <button mat-menu-item (click)="showConfirmComponent($event, comp)" aria-label="Delete Component">
+              <button mat-menu-item matTooltip="Delete Component" (click)="showConfirmComponent($event, comp)" aria-label="Delete Component">
                 <mat-icon>delete</mat-icon>Delete
               </button>
             </mat-menu>
-            <button mat-menu-item (click)="sendToEditComponent(comp)" aria-label="Component menu"
-              class="mdotCtrlMenu comp__dotCtrlMenu" [matMenuTriggerFor]="componentMenu">
-              <mat-icon>mode_edit</mat-icon>Edit
+            <button mat-icon-button matTooltip="Options Menu" aria-label="Component menu" [matMenuTriggerFor]="componentDetailsMenu">
+              <mat-icon>more_vert</mat-icon>
             </button>
+          </div>
+          <mat-card-title>
+            <div fxFlex style="margin-top: -3px">
+              {{ comp.type.name }}
+            </div>
           </mat-card-title>
-          <mat-card-subtitle class="compHeader__subHeader">
+          <mat-card-subtitle class="compHeader__subHeader" sty>
             {{ comp.brandName }} {{ comp.modelName }}
           </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <span>
-            <h5>
-              <span>
-                Mileage:
-              </span>
-              <!-- <span flex></span> -->
-              <span>
-                <mat-checkbox [(ngModel)]="comp.active" id="activeComp" class="comp__activeCheckbox"
-                  (change)="changeCompActiveState(comp)">
-                  Installed</mat-checkbox>
-              </span>
-            </h5>
-            <p>{{ comp.mileage | number }} miles </p>
-          </span>
-          <!-- <br>
-              <span ng-if="comp.installationDate" layout>
-                <span ng-show="comp.active">
-                  <h5>Installed for:</h5>
-                  <p ng-show="((todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30) < 12"> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 | number:0 }}  months </p>
-                  <p ng-show="((todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30) > 12"> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 / 12 | number:1 }}  years </p>
-                </span>   
-                <span flex></span>
-                <span ng-show="comp.active">
-                  <h5>Installation Date:</h5>
-                  <p> {{ comp.installationDate | date }} </p>
-                </span>
-              </span>
-              <br>
-              <v-accordion class="vAccordion--default compview__ExtraDetails">
-                <v-pane>
-                  <v-pane-header class="compExtraDetails__header" aria-controls="{{ comp.fbId }}-content">
-                    More Details...
-                  </v-pane-header>
-                  
-                  <v-pane-content aria-labelledby="{{ comp.fbId }}-header">
-                    
-                    <span ng-if="comp.serial">
-                      <h5>Serial:</h5>
-                      <p> {{comp.serial}}</p>
-                    </span>
-                    <span ng-if="comp.type.tips">
-                      <md-button class="md-primary md-raised" ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</md-button>
-                    </span>
-                    <span>
-                      <h5 class="compExtraDetails__notesHeader">Notes:</h5>
-                      <p class="compExtraDetails__notes">{{ comp.notes }}</p>
-                    </span>
-                  </v-pane-content>
-                </v-pane>
-              </v-accordion>
-              <div class="card-media" layout layout-align="space-around center" layout-padding layout-wrap layout-fill>
-                <div ng-repeat="image in comp.images" class="compImageWhiteBox" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="35" layout layout-align="center center">
-                  <img ng-src="{{ image }}" class="compImage" ng-click="displayPhoto($event)"/>
+          <div fxLayout="row" fxLayoutAlign="space-between">
+            <div>
+              <h4>Mileage:</h4>
+              <p>{{ comp.mileage | number }} miles </p>
+            </div>
+            <div>
+              <mat-checkbox [(ngModel)]="comp.active" id="activeComp" class="comp__activeCheckbox" (change)="changeCompActiveState(comp)">
+                Installed
+              </mat-checkbox>
+            </div>
+          </div>
+          <br />
+          <div *ngIf="comp.installationDate" fxLayout="row" fxLayoutAlign="space-between">
+            <div *ngIf="comp.active">
+              <h5>Installed for:</h5>
+              <p *ngIf="((todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30) <= 12"> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 | number: '1.0-0' }}  months </p>
+              <p *ngIf="((todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30) > 12"> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 / 12 | number: '1.1-1' }}  years </p>
+            </div>   
+            <div *ngIf="comp.active">
+              <h5>Installation Date:</h5>
+              <p> {{ comp.installationDate | date }} </p>
+            </div>
+          </div>
+          <br />
+          <mat-accordion class="compview__extraDetails">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header class="compExtraDetails__header">
+                <mat-panel-title>
+                  More Details...
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div fxLayout="column">
+                <div *ngIf="comp.serial">
+                  <h5>Serial:</h5>
+                  <p>{{comp.serial}}</p>
                 </div>
-              </div>  -->
+                <div *ngIf="comp.type.tips">
+                  <button mat-stroked-button class="btn-sm" color="accent" ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</button>
+                </div>
+                <div style="margin-top: 10px;">
+                  <h5 class="compExtraDetails__notesHeader">Notes:</h5>
+                  <p class="compExtraDetails__notes">{{ comp.notes }}</p>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <div class="compImages">
+            <div fxLayout="row wrap" fxLayoutGap="20px grid" fxLayout.lt-sm="column" fxLayoutAlign="space-between center">
+              <div *ngFor="let image of comp.images" class="compImages__compImageWhiteBox">
+                <img [src]="image" class="compImages__compImage" (click)="displayPhoto($event)" />
+              </div>
+            </div>
+          </div>
+          <!-- <div class="card-media" layout layout-align="space-around center" layout-padding layout-wrap layout-fill>
+            <div ng-repeat="image in comp.images" class="compImageWhiteBox" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="35" layout layout-align="center center">
+              <img ng-src="{{ image }}" class="compImage" ng-click="displayPhoto($event)"/>
+            </div>
+          </div>  -->
         </mat-card-content>
       </mat-card>
-      <!-- </div> -->
     </div>
   </div>
 </div>

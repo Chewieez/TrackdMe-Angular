@@ -9,12 +9,16 @@ import { BikeComponent } from '../../models/bike-component.model';
 export class ComponentListComponent implements OnInit {
   @Input() components: BikeComponent[];
 
+  public todaysDate: number;
+
 
   constructor() {
-    
-   }
-
+    this.todaysDate = Date.now();
+  }
+  
   ngOnInit() {
+    const comps = this.components;
+    const x = 1;
 
   }
 

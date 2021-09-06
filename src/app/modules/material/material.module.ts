@@ -13,7 +13,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTooltipDefaultOptions, MatTooltipModule, MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material/tooltip';
+
+/** Global options for the tooltip's default show/hide delays. */
+export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
+  showDelay: 500,
+  hideDelay: 500,
+  touchendHideDelay: 500,
+};
 
 @NgModule({
   imports: [
@@ -47,6 +54,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatInputModule,
     MatSlideToggleModule
   ],
-  declarations: []
+  declarations: [],
+  providers: [{ provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: myCustomTooltipDefaults }]
 })
 export class MaterialModule { }

@@ -1,12 +1,29 @@
-.component-list-container {
-    padding: 20px;
+
+.compView__mileage {
+    font-size: 1.1em;
 }
 
+.compView__icon {
+    margin-top: -5px;
+    height: 45px;
+    width: 45px;
+}
 
+.mat-card-title {
+    text-transform: uppercase;
+    margin-bottom: 7px;
+}
 
-mat-card {
-    min-width: 340px;
-    max-width: 500px;
+.compImages {
+    margin-top: 15px;
+}
+
+.compImages__compImage,
+.compImages__compImageWhiteBox
+{
+  width: 100px;
+  height: auto;
+  border-radius: 4px;
 }
 
 /*
@@ -80,7 +97,7 @@ md-card-header-text .compHeader__title {
     border-radius: 4px;
 }
 
-.compview__ExtraDetails {
+.compview__extraDetails {
     width: 99%;
 }
 
